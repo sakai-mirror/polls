@@ -44,12 +44,14 @@ import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import uk.org.ponder.beanutil.BeanGetter;
 import uk.org.ponder.beanutil.entity.EntityID;
 import uk.org.ponder.rsf.components.UIELBinding;
+import uk.org.ponder.rsf.components.UIMessage;
 import uk.org.ponder.rsf.components.UISelect;
 import uk.org.ponder.rsf.components.UISelectChoice;
 import uk.org.ponder.rsf.components.UISelectLabel;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIOutputMany;
+import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.messageutil.TargettedMessageList;
@@ -164,7 +166,7 @@ public class PollVoteProducer implements ViewComponentProducer,ViewParamsReporte
 		 UIOutput.make(tofill,"poll-text",poll.getText());
 		 if (poll.getDetails() != null)
 		 {
-			 UIOutput.make(tofill,"poll-description",poll.getDetails());
+			 UIVerbatim.make(tofill,"poll-description",poll.getDetails());
 		 }
 		 
 		 m_log.debug("this poll has " + poll.getPollOptions().size()+ " options");
@@ -229,7 +231,8 @@ public class PollVoteProducer implements ViewComponentProducer,ViewParamsReporte
 			   sub.parameters.add(new UIELBinding("#{voteCollection.submissionStatus}", "sub"));
 			   UICommand cancel = UICommand.make(voteForm, "cancel",messageLocator.getMessage("vote_cancel"),"#{pollToolBean.cancel}");
 			   cancel.parameters.add(new UIELBinding("#{voteCollection.submissionStatus}", "cancel"));
-					   
+			  UIOutput.make(voteForm, "reset", messageLocator.getMessage("vote_reset"));
+					  
 		} 
 		catch (Exception e)
 		{
