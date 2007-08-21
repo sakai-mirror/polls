@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-<classpathentry kind="src" path="api/model/src/java"/>
+	<classpathentry kind="src" path="api/model/src/java"/>
 	<classpathentry kind="src" path="api/logic/src/java"/>
 	<classpathentry kind="src" path="api/public/src/java"/>
 	<classpathentry kind="src" path="impl/logic/src/java"/>
@@ -24,5 +24,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/event-api"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/component-api"/>
 	<classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.1/commons-lang-2.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/util-util"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
