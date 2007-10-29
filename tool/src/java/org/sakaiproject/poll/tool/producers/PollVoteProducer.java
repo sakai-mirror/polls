@@ -119,7 +119,7 @@ public class PollVoteProducer implements ViewComponentProducer,ViewParamsReporte
 			
 		    if (tml.size() > 0) {
 		    	for (int i = 0; i < tml.size(); i ++ ) {
-		    		UIBranchContainer errorRow = UIBranchContainer.make(tofill,"error-row:");
+		    		UIBranchContainer errorRow = UIBranchContainer.make(tofill,"error-row:", new Integer(i).toString());
 		    		String output;
 		    		if (tml.messageAt(i).args != null ) {	    		
 		    			output = messageLocator.getMessage(tml.messageAt(i).acquireMessageCode(),tml.messageAt(i).args[0]);
