@@ -25,5 +25,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/component-api"/>
 	<classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.1/commons-lang-2.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/util-util"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/content-api"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
