@@ -3,28 +3,39 @@
 <!--  Request-scope beans for TaskList - actually just the handler -->
 <beans>
 
- 		<!-- for now we will just hardwire the rich text control for this app to be
-		the Sakai FCKEditor-based rich text control -->
-	<bean id="richTextEvolver"
-		class="org.springframework.beans.factory.config.BeanReferenceFactoryBean">
-		<property name="targetBeanName" value="sakaiFCKTextEvolver" />
-	</bean>
- 	
- <bean id="pollToolBean" class="org.sakaiproject.poll.tool.params.PollToolBean">
-  <property name="pollListManager" ref="org.sakaiproject.tool.poll.api.PollListManager"/>
-  <property name="voteBean" ref="voteBean"/>
-  <property name="pollVoteManager" ref="org.sakaiproject.tool.poll.api.PollVoteManagerDao" />
-  <property name="voteCollection" ref="voteCollection" />
-  <property name="option" ref="option" />
-  <property name="poll" ref="poll" />
-  <property name="localeGetter" ref="requestLocaleProxy" />
-  <property name="messages" ref="targettedMessageList"/>
- </bean>	
 
-	
- 	
-	<bean id="permissionsProducer" class="org.sakaiproject.poll.tool.producers.PermissionsProducer">
-  		<property name="pollListManager" ref="org.sakaiproject.tool.poll.api.PollListManager"/>
+   <!-- rich text evolver bean def -->
+   <bean id="sakaiFCKTextEvolver2"
+   	class="org.sakaiproject.poll.tool.evolvers.SakaiFCKTextEvolver">
+   	<property name="contentHostingService"
+   		ref="org.sakaiproject.content.api.ContentHostingService" />
+   	<property name="context" ref="sakai-Context" />
+   </bean>
+
+   <!-- rich text evolver bean def -->
+   <bean id="richTextEvolver" parent="sakaiFCKTextEvolver2" />
+
+   <bean id="pollToolBean"
+		class="org.sakaiproject.poll.tool.params.PollToolBean">
+		<property name="pollListManager"
+			ref="org.sakaiproject.tool.poll.api.PollListManager" />
+		<property name="voteBean" ref="voteBean" />
+		<property name="pollVoteManager"
+			ref="org.sakaiproject.tool.poll.api.PollVoteManagerDao" />
+		<property name="voteCollection" ref="voteCollection" />
+		<property name="option" ref="option" />
+		<property name="poll" ref="poll" />
+		<property name="localeGetter" ref="requestLocaleProxy" />
+		<property name="messages" ref="targettedMessageList" />
+	</bean>
+
+
+
+	<bean id="permissionsProducer"
+		class="org.sakaiproject.poll.tool.producers.PermissionsProducer">
+		<property name="pollListManager"
+			ref="org.sakaiproject.tool.poll.api.PollListManager" />
+>>>>>>> .merge-right.r39753
 		<property name="toolManager"
 			ref="org.sakaiproject.tool.api.ToolManager" />
 		<property name="userDirectoryService"
