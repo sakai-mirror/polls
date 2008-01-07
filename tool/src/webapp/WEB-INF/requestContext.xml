@@ -35,7 +35,6 @@
 		class="org.sakaiproject.poll.tool.producers.PermissionsProducer">
 		<property name="pollListManager"
 			ref="org.sakaiproject.tool.poll.api.PollListManager" />
->>>>>>> .merge-right.r39753
 		<property name="toolManager"
 			ref="org.sakaiproject.tool.api.ToolManager" />
 		<property name="userDirectoryService"
