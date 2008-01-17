@@ -24,5 +24,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/event-api"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/component-api"/>
 	<classpathentry kind="var" path="MAVEN_REPO/commons-lang/jars/commons-lang-2.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/util-util"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
