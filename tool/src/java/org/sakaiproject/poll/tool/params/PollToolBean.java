@@ -41,7 +41,6 @@ import org.sakaiproject.poll.model.VoteCollection;
 import org.sakaiproject.poll.model.VoteImpl;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
-import org.sakaiproject.util.FormattedText;
 import org.sakaiproject.exception.PermissionException;
 
 import org.apache.commons.logging.Log;
@@ -49,8 +48,6 @@ import org.apache.commons.logging.LogFactory;
 
 
 import uk.org.ponder.localeutil.LocaleGetter;
-import uk.org.ponder.messageutil.TargettedMessage;
-import uk.org.ponder.messageutil.TargettedMessageList;
 
 
 
@@ -118,12 +115,6 @@ public class PollToolBean {
   public void setLocaleGetter(LocaleGetter localegetter) {
     this.localegetter = localegetter;
   }
-	private TargettedMessageList messages;
-	public void setMessages(TargettedMessageList messages) {
-		this.messages = messages;
-	}
-
-
   public String processActionAdd() {
 	  
 	  
@@ -136,14 +127,12 @@ public class PollToolBean {
 		  poll = manager.getPollById(newPoll.getPollId());
 		  isNew = false;
 		  //check for possible unchanged values
-		  m_log.debug(" newPoll is " + poll.getText()+ " while poll text is " + poll.getText());
-		 
-		
-		  if (poll.getText().equals("") && poll.getText()!=null)
-			  poll.setText(poll.getText());
+		  m_log.debug(" newPoll test is " + newPoll.getText()+ " while poll text is " + poll.getText());
+		  if (newPoll.getText().equals("") && poll.getText()!=null)
+			  newPoll.setText(poll.getText());
 		  
-		  if (poll.getDetails().equals("") && poll.getDetails() != null)
-			  poll.setDetails(poll.getDetails());
+		  if (newPoll.getDetails().equals("") && poll.getDetails() != null)
+			  newPoll.setDetails(poll.getDetails());
 	  }
 	  
 	  SimpleDateFormat yearf = new SimpleDateFormat("yyyy");
@@ -256,30 +245,8 @@ public class PollToolBean {
       newPoll.setVoteClose(closeDate);
       newPoll.setSiteId(siteID);
       
-    	if (poll.getVoteOpen().after(poll.getVoteClose())) {
-			m_log.debug("Poll closes before it opens");
-			
-	        messages.addMessage(new TargettedMessage("close_before_open"));
-	        throw new  IllegalArgumentException("close_before_open");
-		}
-	  
-		if (poll.getMinOptions() > poll.getMaxOptions()) {
-			m_log.debug("Min options greater than max options");
-			messages.addMessage(new TargettedMessage("min_greater_than_max"," min greater than max"));
-			throw new  IllegalArgumentException("min_greater_than_max");
-		}
-	  
-		if (poll.getText() == null || poll.getText().length() == 0 ) {
-			m_log.debug("Poll question is Empty!");
-			messages.addMessage(new TargettedMessage("error_no_text","no text"));
-			throw new  IllegalArgumentException("error_no_text");
-
-		}
-		
-	  
-	  poll.setDetails(FormattedText.processFormattedText(poll.getDetails(), new StringBuffer()));
-	  m_log.debug("about to save poll " + poll);
-      manager.savePoll(poll);
+      m_log.debug("about to save poll " + newPoll);
+      manager.savePoll(newPoll);
      
       m_log.info("Poll saved with id of " + newPoll.getPollId());
       
