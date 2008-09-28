@@ -1,0 +1,13 @@
+<projectDescription>
+  <name>sakai-poll-model-api</name>
+  <comment>This project creates the model APIs used by the Sakai Poll Tool</comment>
+  <projects/>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>

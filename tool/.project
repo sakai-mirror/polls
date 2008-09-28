@@ -1,0 +1,18 @@
+<projectDescription>
+  <name>sakai-poll-tool</name>
+  <comment>This project creates a WAR containing the Poll Tool for Sakai.</comment>
+  <projects>
+    <project>entitybroker-api</project>
+    <project>entitybroker-utils</project>
+    <project>sakai-poll-logic-api</project>
+    <project>sakai-poll-model-api</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
