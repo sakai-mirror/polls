@@ -25,12 +25,12 @@
       <artifactId>spring</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.sakaiproject.kernel</groupId>
-      <artifactId>sakai-kernel-api</artifactId>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-user-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.sakaiproject.kernel</groupId>
-      <artifactId>sakai-component-manager</artifactId>
+      <groupId>org.sakaiproject</groupId>
+      <artifactId>sakai-component-api</artifactId>
     </dependency>
 <!-- internal dependencies -->
     <dependency>
