@@ -158,6 +158,11 @@ public class PollOptionProducer implements ViewComponentProducer,ViewParamsRepor
 			newOption = true;
 			UIMessage.make(tofill,"new-option-title","new_option_title");
 		}
+
+		if (poll == null) {
+			m_log.warn("no poll found");
+			return;
+		}
 		
 
 		
