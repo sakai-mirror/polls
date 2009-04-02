@@ -24,5 +24,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring/2.0.6/spring-2.0.6.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-mock/2.0.6/spring-mock-2.0.6.jar"/>
 	<classpathentry kind="lib" path="/usr/java/jdk1.5.0_17/lib/tools.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/sakaiproject/generic-dao/0.9.12/generic-dao-0.9.12.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
