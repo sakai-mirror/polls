@@ -1,7 +1,8 @@
 <classpath>
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/org/sakaiproject/generic-dao/0.9.16/generic-dao-0.9.16.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
-  <classpathentry kind="src" path="/sakai-poll-dao-impl"/>
-  <classpathentry kind="src" path="/sakai-poll-logic-impl"/>
+  <classpathentry kind="src" path="/poll-impl"/>
+  <classpathentry kind="var" path="M2_REPO/org/azeckoski/reflectutils/0.9.10/reflectutils-0.9.10.jar"/>
 </classpath>
