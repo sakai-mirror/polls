@@ -5,7 +5,7 @@
   <artifactId>polls-base</artifactId>
   <name>Sakai Polls Project</name>
   <packaging>pom</packaging>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
 <!-- polls.version -->
   <licenses>
     <license>
@@ -23,9 +23,9 @@
     <relativePath>../master/pom.xml</relativePath>
   </parent>
   <scm>
-    <connection>scm:svn:https://source.sakaiproject.org/svn/polls/branches/sakai-2.6.0</connection>
-    <developerConnection>scm:svn:https://source.sakaiproject.org/svn/polls/branches/sakai-2.6.0</developerConnection>
-    <url>https://source.sakaiproject.org/svn/polls/branches/sakai-2.6.0</url>
+    <connection>scm:svn:https://source.sakaiproject.org/svn/polls/tags/polls-base-1.1</connection>
+    <developerConnection>scm:svn:https://source.sakaiproject.org/svn/polls/tags/polls-base-1.1</developerConnection>
+    <url>https://source.sakaiproject.org/svn/polls/tags/polls-base-1.1</url>
   </scm>
   <modules>
     <module>api/logic</module>
@@ -42,34 +42,34 @@
       <dependency>
         <groupId>org.sakaiproject</groupId>
         <artifactId>sakai-poll-model-api</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
 <!-- polls.version -->
         <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.sakaiproject</groupId>
         <artifactId>sakai-poll-logic-api</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
 <!-- polls.version -->
         <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.sakaiproject</groupId>
         <artifactId>sakai-poll-hbm</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
 <!-- polls.version -->
         <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.sakaiproject</groupId>
         <artifactId>sakai-poll-dao-impl</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
 <!-- polls.version -->
       </dependency>
       <dependency>
         <groupId>org.sakaiproject</groupId>
         <artifactId>sakai-poll-logic-impl</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
 <!-- polls.version -->
       </dependency>
 <!-- needed until EB is in the Sakai master dependency management -->
