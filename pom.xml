@@ -27,6 +27,26 @@
     <developerConnection>scm:svn:https://source.sakaiproject.org/svn/polls/tags/polls-base-1.1</developerConnection>
     <url>https://source.sakaiproject.org/svn/polls/tags/polls-base-1.1</url>
   </scm>
+	<distributionManagement>
+		<snapshotRepository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>sakai-maven-snapshots</id>
+			<name>Sakai snapshot Repo</name>
+			<url>https://source.sakaiproject.org/maven2-snapshots</url>
+			<layout>default</layout>
+		</snapshotRepository>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>local</id>
+			<name>Local Test</name>
+			<url>file:///tmp/maven2</url>
+			<layout>default</layout>
+		</repository>
+		<site>
+			<id>local</id>
+			<name>Local Test</name>
+			<url>${url.localsite}</url>
+		</site>
   <modules>
     <module>api/logic</module>
     <module>api/model</module>
