@@ -45,7 +45,7 @@
 		<site>
 			<id>local</id>
 			<name>Local Test</name>
-			<url>${url.localsite}</url>
+			<url>file:///tmp/site</url>
 		</site>
         </distributionManagement>
   <modules>
