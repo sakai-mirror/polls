@@ -37,9 +37,9 @@
 		</snapshotRepository>
 		<repository>
 			<uniqueVersion>false</uniqueVersion>
-			<id>local</id>
+			<id>sakai-maven2</id>
 			<name>Local Test</name>
-			<url>file:///tmp/maven2</url>
+			<url>http://source.sakaiproject.org/maven2</url>
 			<layout>default</layout>
 		</repository>
 		<site>
