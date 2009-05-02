@@ -47,6 +47,7 @@
 			<name>Local Test</name>
 			<url>${url.localsite}</url>
 		</site>
+        </distributionManagement>
   <modules>
     <module>api/logic</module>
     <module>api/model</module>
