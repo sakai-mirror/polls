@@ -5,7 +5,7 @@
 
 
 	<!-- rich text evolver bean def -->
-	<bean id="richTextEvolver" parent="sakaiFCKTextEvolver" />
+	<!-- <bean id="richTextEvolver" parent="sakaiFCKTextEvolver" /> -->
 
 	<!-- error prograting bean -->
 	<!-- <bean id="allErrorsAllowable"
