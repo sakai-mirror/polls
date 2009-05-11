@@ -26,16 +26,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Stack;
-import java.util.ArrayList;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.sakaiproject.component.cover.ServerConfigurationService;
-import org.sakaiproject.entity.api.Entity;
-import org.sakaiproject.entity.api.ResourceProperties;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Poll implements Entity  {
+import com.sun.org.apache.xerces.internal.impl.XMLEntityManager.Entity;
+
+public class Poll  {
 
     private static final long serialVersionUID = 2L;
     private Long id;
@@ -286,28 +284,6 @@ public class Poll implements Entity  {
         .toString();
     }
 
-    /*
-     * Entity Methods 
-     */
-    public String getUrl() {
-        return ServerConfigurationService.getAccessUrl() + "/poll/" + this.getId();
-    }
-
-    public String getReference() {
-
-        return ServerConfigurationService.getAccessUrl() + "/poll/" + Entity.SEPARATOR + this.getId();
-    }
-
-    public String getUrl(String arg0) {
-
-        return getUrl();
-    }
-
-    public String getReference(String arg0) {
-
-        return getReference();
-    }
-
     public String getId() {
         if (entityID == null) {
             entityID = id + "";
@@ -318,43 +294,5 @@ public class Poll implements Entity  {
 
     public void setId(String s) {
         entityID = s;
-    }
-
-    public ResourceProperties getProperties() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public Element toXml(Document doc, Stack stack) {
-        Element poll = doc.createElement("poll");
-
-        if (stack.isEmpty())
-        {
-            doc.appendChild(poll);
-        }
-        else
-        {
-            ((Element) stack.peek()).appendChild(poll);
-        }
-
-        stack.push(poll);
-
-        poll.setAttribute("id", getId());
-        poll.setAttribute("pollid", getPollId().toString());
-        poll.setAttribute("title", getText());
-
-        if (description != null) poll.setAttribute("description", description);
-
-        poll.setAttribute("open-time", this.voteOpen.toString());
-        poll.setAttribute("close-time", this.voteClose.toString());
-        poll.setAttribute("limit-voting", Boolean.valueOf(limitVoting).toString());
-        // properties
-        //getProperties().toXml(doc, stack);
-        //apppend the options as chidren
-
-
-        stack.pop();
-
-        return poll;
     }
 }

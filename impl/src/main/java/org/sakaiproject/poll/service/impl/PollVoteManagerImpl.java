@@ -36,7 +36,7 @@ import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
-import org.sakaiproject.user.cover.UserDirectoryService;
+
 
 
 public class PollVoteManagerImpl implements PollVoteManager {
@@ -126,7 +126,7 @@ public class PollVoteManagerImpl implements PollVoteManager {
 
     public boolean userHasVoted(Long pollId) {
 
-        return userHasVoted(pollId, UserDirectoryService.getCurrentUser().getId());
+        return userHasVoted(pollId, externalLogic.getCurrentUserId());
     }
 
     public Vote getVoteById(Long voteId) {

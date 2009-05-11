@@ -25,18 +25,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.sakaiproject.entitybroker.EntityReference;
-import org.sakaiproject.entitybroker.entityprovider.CoreEntityProvider;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.CollectionResolvable;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.RESTful;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.RedirectDefinable;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.RequestStorable;
-import org.sakaiproject.entitybroker.entityprovider.extension.Formats;
-import org.sakaiproject.entitybroker.entityprovider.extension.RequestStorage;
-import org.sakaiproject.entitybroker.entityprovider.extension.TemplateMap;
-import org.sakaiproject.entitybroker.entityprovider.search.Restriction;
-import org.sakaiproject.entitybroker.entityprovider.search.Search;
-import org.sakaiproject.entitybroker.util.AbstractEntityProvider;
+import org.sakaiproject.entitybus.DeveloperHelperService;
+import org.sakaiproject.entitybus.EntityReference;
+import org.sakaiproject.entitybus.entityprovider.CoreEntityProvider;
+import org.sakaiproject.entitybus.entityprovider.capabilities.CollectionResolvable;
+import org.sakaiproject.entitybus.entityprovider.capabilities.RESTful;
+import org.sakaiproject.entitybus.entityprovider.capabilities.RedirectDefinable;
+import org.sakaiproject.entitybus.entityprovider.capabilities.RequestStorable;
+import org.sakaiproject.entitybus.entityprovider.extension.Formats;
+import org.sakaiproject.entitybus.entityprovider.extension.RequestStorage;
+import org.sakaiproject.entitybus.entityprovider.extension.TemplateMap;
+import org.sakaiproject.entitybus.entityprovider.search.Restriction;
+import org.sakaiproject.entitybus.entityprovider.search.Search;
+//import org.sakaiproject.entitybus.util.AbstractEntityProvider;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
@@ -49,7 +50,7 @@ import org.sakaiproject.poll.model.Vote;
  * 
  * @author Aaron Zeckoski (azeckoski @ gmail.com)
  */
-public class PollEntityProvider extends AbstractEntityProvider implements CoreEntityProvider, RESTful, 
+public class PollEntityProvider implements CoreEntityProvider, RESTful, 
         RequestStorable, RedirectDefinable {
 
     private PollListManager pollListManager;
@@ -66,6 +67,13 @@ public class PollEntityProvider extends AbstractEntityProvider implements CoreEn
     public String getEntityPrefix() {
         return PREFIX;
     }
+    
+    private DeveloperHelperService developerHelperService;
+    
+    public void setDeveloperHelperService(
+			DeveloperHelperService developerHelperService) {
+		this.developerHelperService = developerHelperService;
+	}
 
     public TemplateMap[] defineURLMappings() {
         return new TemplateMap[] {

@@ -26,21 +26,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.sakaiproject.entitybroker.EntityReference;
-import org.sakaiproject.entitybroker.entityprovider.CoreEntityProvider;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.ActionsExecutable;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.CollectionResolvable;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.Createable;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.Describeable;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.Inputable;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.Outputable;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.Redirectable;
-import org.sakaiproject.entitybroker.entityprovider.extension.Formats;
-import org.sakaiproject.entitybroker.entityprovider.search.Restriction;
-import org.sakaiproject.entitybroker.entityprovider.search.Search;
-import org.sakaiproject.entitybroker.util.AbstractEntityProvider;
-import org.sakaiproject.event.api.UsageSession;
-import org.sakaiproject.event.cover.UsageSessionService;
+import org.sakaiproject.entitybus.DeveloperHelperService;
+import org.sakaiproject.entitybus.EntityReference;
+import org.sakaiproject.entitybus.entityprovider.CoreEntityProvider;
+import org.sakaiproject.entitybus.entityprovider.capabilities.ActionsExecutable;
+import org.sakaiproject.entitybus.entityprovider.capabilities.CollectionResolvable;
+import org.sakaiproject.entitybus.entityprovider.capabilities.Createable;
+import org.sakaiproject.entitybus.entityprovider.capabilities.Describeable;
+import org.sakaiproject.entitybus.entityprovider.capabilities.Inputable;
+import org.sakaiproject.entitybus.entityprovider.capabilities.Outputable;
+import org.sakaiproject.entitybus.entityprovider.capabilities.Redirectable;
+import org.sakaiproject.entitybus.entityprovider.extension.Formats;
+import org.sakaiproject.entitybus.entityprovider.search.Restriction;
+import org.sakaiproject.entitybus.entityprovider.search.Search;
+import org.sakaiproject.poll.logic.ExternalLogic;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
@@ -53,7 +52,7 @@ import org.sakaiproject.poll.model.Vote;
  * 
  * @author Aaron Zeckoski (azeckoski @ gmail.com)
  */
-public class PollVoteEntityProvider extends AbstractEntityProvider implements CoreEntityProvider, 
+public class PollVoteEntityProvider implements CoreEntityProvider, 
     Createable, CollectionResolvable, Outputable, Inputable, Describeable, ActionsExecutable, Redirectable {
 
     private PollListManager pollListManager;
@@ -82,8 +81,19 @@ public class PollVoteEntityProvider extends AbstractEntityProvider implements Co
         boolean exists = (vote != null);
         return exists;
     }
+    
+    private DeveloperHelperService developerHelperService;
+    public void setDeveloperHelperService(
+			DeveloperHelperService developerHelperService) {
+		this.developerHelperService = developerHelperService;
+	}
+    
+    private ExternalLogic externalLogic;    
+	public void setExternalLogic(ExternalLogic externalLogic) {
+		this.externalLogic = externalLogic;
+	}
 
-    public String createEntity(EntityReference ref, Object entity, Map<String, Object> params) {
+	public String createEntity(EntityReference ref, Object entity, Map<String, Object> params) {
         String userId = developerHelperService.getCurrentUserId();
         if (userId == null) {
             throw new SecurityException("user must be logged in to create new votes");
@@ -116,10 +126,10 @@ public class PollVoteEntityProvider extends AbstractEntityProvider implements Co
             vote.setSubmissionId(sid);
         }
         // set the IP address
-        UsageSession usageSession = UsageSessionService.getSession();
-        if (usageSession != null) {
-            vote.setIp( usageSession.getIpAddress() );
-        }
+       
+        
+        vote.setIp(externalLogic.getCurrentSessionIP());
+        
         boolean saved = pollVoteManager.saveVote(vote);
         if (!saved) {
             throw new IllegalStateException("Unable to save vote ("+vote+") for user ("+userId+"): " + ref);

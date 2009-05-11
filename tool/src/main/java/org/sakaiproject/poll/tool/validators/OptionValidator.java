@@ -24,9 +24,9 @@ package org.sakaiproject.poll.tool.validators;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.poll.logic.ExternalLogic;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.util.PollUtils;
-import org.sakaiproject.util.FormattedText;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -42,6 +42,11 @@ public class OptionValidator implements Validator {
 		return clazz.equals(Option.class);
 	}
 
+	private ExternalLogic externalLogic;    
+	public void setExternalLogic(ExternalLogic externalLogic) {
+		this.externalLogic = externalLogic;
+	}
+	
 	public void validate(Object obj, Errors errors) {
 
 
@@ -51,7 +56,7 @@ public class OptionValidator implements Validator {
 		String stripText = null;
 		
 		if(null != option.getOptionText()) {
-			stripText = FormattedText.convertFormattedTextToPlaintext(option.getOptionText()).trim();
+			stripText = (option.getOptionText()).trim();
 		}
 		
 		logger.debug("validating Option with id:" + option.getOptionId());

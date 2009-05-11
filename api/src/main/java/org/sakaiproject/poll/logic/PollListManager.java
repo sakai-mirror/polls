@@ -23,8 +23,6 @@ package org.sakaiproject.poll.logic;
 
 import java.util.List;
 
-import org.sakaiproject.entity.api.EntityProducer;
-import org.sakaiproject.exception.PermissionException;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 
@@ -35,7 +33,7 @@ import org.sakaiproject.poll.model.Poll;
  * @author DH
  *
  */
-public interface PollListManager extends EntityProducer {
+public interface PollListManager {
 
 //  the permissions
 

@@ -28,10 +28,6 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.authz.cover.AuthzGroupService;
-import org.sakaiproject.authz.api.AuthzGroup;
-import org.sakaiproject.authz.api.Role;
-import org.sakaiproject.tool.cover.ToolManager;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.model.PollRolePerms;
 
@@ -45,6 +41,8 @@ public class RoleFactory {
 		m_log.debug("Getting permRoles");
 		Map<String, PollRolePerms> perms = new HashMap<String, PollRolePerms>();
 		try {
+			//TODO we need a better way to do this
+			/*
 			AuthzGroup group = AuthzGroupService.getAuthzGroup("/site/" + ToolManager.getCurrentPlacement().getContext());
 			Set<Role> roles = group.getRoles();
 			Iterator<Role> i = roles.iterator();
@@ -63,10 +61,12 @@ public class RoleFactory {
 						role.isAllowed(PollListManager.PERMISSION_EDIT_ANY)
 						));
 			}
+			*/
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return perms;
 	}
 }

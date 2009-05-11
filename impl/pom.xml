@@ -19,16 +19,15 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate</artifactId>
     </dependency>
-    <!-- <dependency>
+    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring</artifactId>
-    </dependency> -->
-	<!--   
-    <dependency>
-      <groupId>org.sakaiproject.entitybroker</groupId>
-      <artifactId>entitybroker-api</artifactId>
     </dependency>
-     -->
+	<dependency>
+      <groupId>org.sakaiproject.entitybus</groupId>
+      <artifactId>entitybus-api</artifactId>
+    </dependency>
+    
     <dependency>
     	<groupId>org.sakaiproject</groupId>
     	<artifactId>generic-dao</artifactId>
@@ -144,7 +143,7 @@
         <filtering>false</filtering>
       </resource>
       <resource>
-        <directory>${basedir}/src/java</directory>
+        <directory>${basedir}/src/main/java</directory>
         <includes>
           <include>**/*.xml</include>
           <include>**/*.xslt</include>
@@ -164,6 +163,15 @@
                "**/*TestCase.java" - includes all of its subdirectory and all java filenames that end with "TestCase".
             -->
          </plugin>
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+  
       </plugins>
       <testResources>
          <testResource>
@@ -182,6 +190,6 @@
          </testResource>
       </testResources>
    
-
+  
   </build>
 </project>

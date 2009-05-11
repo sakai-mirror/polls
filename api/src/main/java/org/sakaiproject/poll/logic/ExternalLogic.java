@@ -156,7 +156,13 @@ public interface ExternalLogic {
 	
 	
 	public Map<String, PollRolePerms> getRoles(String locationReference);
-	
 
+	
+	public String getNewUUID();
+
+	
+	public String getCurrentSessionIP();
+	
+	public String escapeFormatedText(String text);
 	
 }

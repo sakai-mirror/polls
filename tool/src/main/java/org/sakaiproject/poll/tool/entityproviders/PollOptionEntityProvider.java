@@ -24,13 +24,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.sakaiproject.entitybroker.EntityReference;
-import org.sakaiproject.entitybroker.entityprovider.CoreEntityProvider;
-import org.sakaiproject.entitybroker.entityprovider.capabilities.RESTful;
-import org.sakaiproject.entitybroker.entityprovider.extension.Formats;
-import org.sakaiproject.entitybroker.entityprovider.search.Restriction;
-import org.sakaiproject.entitybroker.entityprovider.search.Search;
-import org.sakaiproject.entitybroker.util.AbstractEntityProvider;
+import org.sakaiproject.entitybus.DeveloperHelperService;
+import org.sakaiproject.entitybus.EntityReference;
+import org.sakaiproject.entitybus.entityprovider.CoreEntityProvider;
+import org.sakaiproject.entitybus.entityprovider.capabilities.RESTful;
+import org.sakaiproject.entitybus.entityprovider.extension.Formats;
+import org.sakaiproject.entitybus.entityprovider.search.Restriction;
+import org.sakaiproject.entitybus.entityprovider.search.Search;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
@@ -41,7 +41,7 @@ import org.sakaiproject.poll.model.Poll;
  * 
  * @author Aaron Zeckoski (azeckoski @ gmail.com)
  */
-public class PollOptionEntityProvider extends AbstractEntityProvider implements CoreEntityProvider, RESTful {
+public class PollOptionEntityProvider implements CoreEntityProvider, RESTful {
 
     private PollListManager pollListManager;
     public void setPollListManager(PollListManager pollListManager) {
@@ -65,7 +65,14 @@ public class PollOptionEntityProvider extends AbstractEntityProvider implements 
         return exists;
     }
 
-    public String createEntity(EntityReference ref, Object entity, Map<String, Object> params) {
+    private DeveloperHelperService developerHelperService;
+    
+    public void setDeveloperHelperService(
+			DeveloperHelperService developerHelperService) {
+		this.developerHelperService = developerHelperService;
+	}
+
+	public String createEntity(EntityReference ref, Object entity, Map<String, Object> params) {
         String userReference = developerHelperService.getCurrentUserReference();
         if (userReference == null) {
             throw new SecurityException("user must be logged in to create new options");

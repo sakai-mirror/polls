@@ -28,6 +28,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.poll.logic.ExternalLogic;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
@@ -35,7 +36,8 @@ import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.VoteCollection;
 import org.sakaiproject.poll.util.PollUtils;
-import org.sakaiproject.util.FormattedText;
+import org.sakaiproject.poll.tool.params.VoteBean;
+
 
 import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.messageutil.TargettedMessage;
@@ -117,6 +119,10 @@ public class PollToolBean {
 		this.messages = messages;
 	}
 
+	private ExternalLogic externalLogic;
+	public void setExternalLogic(ExternalLogic externalLogic) {
+		this.externalLogic = externalLogic;
+	}
 
 	public Poll processActionAdd() {
 		boolean isNew = true;
@@ -157,7 +163,7 @@ public class PollToolBean {
 		}
 
 
-		poll.setDetails(PollUtils.cleanupHtmlPtags(FormattedText.processFormattedText(poll.getDetails(), new StringBuilder())));
+		poll.setDetails(PollUtils.cleanupHtmlPtags(externalLogic.escapeFormatedText(poll.getDetails())));
 		m_log.debug("about to save poll " + poll);
 		manager.savePoll(poll);
 
@@ -203,7 +209,7 @@ public class PollToolBean {
 		VoteCollection votes = voteCollection;
 		m_log.info("got vote collection with id " + votes.getId());
 
-		List options = new ArrayList();
+		List<String> options = new ArrayList<String>();
 
 		if (votes.getOptionsSelected() == null && votes.getOption() != null) {
 			options.add(votes.getOption());
@@ -250,8 +256,8 @@ public class PollToolBean {
 			//errors.reject("vote_closed","vote closed");
 			// return null;
 		}
-		StringBuilder sb = new StringBuilder();
-		option.setOptionText(FormattedText.processFormattedText(option.getOptionText(), sb, true, true));
+		
+		option.setOptionText(externalLogic.escapeFormatedText(option.getOptionText()));
 
 		String text = option.getOptionText();
 		text = PollUtils.cleanupHtmlPtags(text);

@@ -14,4 +14,23 @@
     This project creates the logic APIs used by the Sakai Poll Tool
   </description>
   <packaging>jar</packaging>
+    <dependencies>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+  </dependency>
+  </dependencies>
+  <build>
+      <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  
+  </build>
 </project>

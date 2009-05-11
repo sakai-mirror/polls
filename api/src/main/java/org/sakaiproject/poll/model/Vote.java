@@ -23,9 +23,6 @@ package org.sakaiproject.poll.model;
 
 import java.util.Date;
 
-import org.sakaiproject.event.api.UsageSession;
-import org.sakaiproject.event.cover.UsageSessionService;
-import org.sakaiproject.tool.cover.SessionManager;
 
 public class Vote {
 
@@ -51,12 +48,15 @@ public class Vote {
 
         // TODO move this stuff to the service
         // user is current user
+        
+        /*
         userId = SessionManager.getCurrentSessionUserId();
         // set the Ip to the current sessions IP
         UsageSession usageSession = UsageSessionService.getSession();
         if (usageSession != null) {
             ip = usageSession.getIpAddress();
         }
+        */
     }
 
     public void setId(Long value) {

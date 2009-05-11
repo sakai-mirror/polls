@@ -34,16 +34,9 @@ import java.util.Vector;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.entity.api.Entity;
-import org.sakaiproject.entity.api.EntityManager;
-import org.sakaiproject.entity.api.EntityTransferrer;
-import org.sakaiproject.entity.api.HttpAccess;
-import org.sakaiproject.entity.api.Reference;
-import org.sakaiproject.entity.api.ResourceProperties;
 import org.sakaiproject.genericdao.api.search.Order;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
-import org.sakaiproject.id.api.IdManager;
 import org.sakaiproject.poll.dao.PollDao;
 import org.sakaiproject.poll.logic.ExternalLogic;
 import org.sakaiproject.poll.logic.PollListManager;
@@ -51,31 +44,21 @@ import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.util.PollUtil;
-import org.sakaiproject.site.api.SiteService;
-import org.springframework.dao.DataAccessException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 
 
-public class PollListManagerImpl implements PollListManager,EntityTransferrer {
+public class PollListManagerImpl implements PollListManager {
 
     // use commons logger
     private static Log log = LogFactory.getLog(PollListManagerImpl.class);
-    public static final String REFERENCE_ROOT = Entity.SEPARATOR + "poll";
+    
 
 
 
-    private EntityManager entityManager;
-    public void setEntityManager(EntityManager em) {
-        entityManager = em;
-    }
 
 
-    private IdManager idManager;
-    public void setIdManager(IdManager idm) {
-        idManager = idm;
-    }
 
     private PollDao dao;
     public void setDao(PollDao dao) {
@@ -88,11 +71,7 @@ public class PollListManagerImpl implements PollListManager,EntityTransferrer {
 	}
 
 	public void init() {
-        try {
-            entityManager.registerEntityProducer(this, REFERENCE_ROOT);
-        } catch (Throwable t) {
-            log.warn("init(): ", t);
-        }
+        
 
         externalLogic.registerFunction(PERMISSION_VOTE);
         externalLogic.registerFunction(PERMISSION_ADD);
@@ -177,21 +156,17 @@ public class PollListManagerImpl implements PollListManager,EntityTransferrer {
         
         if (t.getId() == null) {
             newPoll = true;
-            t.setId(idManager.createUuid());
+            t.setId(externalLogic.getNewUUID());
         }
 
         // we may need to truncate the description field
         if (t.getDetails().length() > 254)
             t.setDetails(t.getDetails().substring(0, 254));
 
-        try {
-            dao.save(t);
+       
+        dao.save(t);
 
-        } catch (DataAccessException e) {
-            log.error("Hibernate could not save: " + e.toString());
-            e.printStackTrace();
-            return false;
-        }
+  
         log.debug(" Poll  " + t.toString() + "successfuly saved");
         if (newPoll)
         	externalLogic.postEvent("poll.add", "poll/site/"
@@ -306,14 +281,9 @@ public class PollListManagerImpl implements PollListManager,EntityTransferrer {
     }
 
     public void deleteOption(Option option) {
-        try {
+        
             dao.delete(option);
-        } catch (DataAccessException e) {
-            log.error("Hibernate could not delete: " + e.toString());
-            e.printStackTrace();
-            return;
-        }
-        log.info("Option id " + option.getId() + " deleted");
+            log.info("Option id " + option.getId() + " deleted");
     }
 
     public boolean saveOption(Option t) {
@@ -322,13 +292,8 @@ public class PollListManagerImpl implements PollListManager,EntityTransferrer {
             t.setUUId( UUID.randomUUID().toString() );
         }
 
-        try {
-            dao.save(t);
-        } catch (DataAccessException e) {
-            log.error("Hibernate could not save: " + e.toString());
-            e.printStackTrace();
-            return false;
-        }
+
+        dao.save(t);
         log.info("Option  " + t.toString() + "successfuly saved");
         return true;
     }
@@ -358,226 +323,6 @@ public class PollListManagerImpl implements PollListManager,EntityTransferrer {
         	return false;
     }
 
-    /*
-     * EntityProducer Methods
-     */
-    public String getLabel() {
-        return "poll";
-    }
-
-    public boolean willArchiveMerge() {
-        return true;
-    }
-
-    @SuppressWarnings("unchecked")
-    public String archive(String siteId, Document doc, Stack stack, String archivePath,
-            List attachments) {
-        log.debug("archive: poll " + siteId);
-        // prepare the buffer for the results log
-        StringBuilder results = new StringBuilder();
-
-        // String assignRef = assignmentReference(siteId, SiteService.MAIN_CONTAINER);
-        results.append("archiving " + getLabel() + " context " + Entity.SEPARATOR + siteId
-                + Entity.SEPARATOR + SiteService.MAIN_CONTAINER + ".\n");
-
-        // start with an element with our very own (service) name
-        Element element = doc.createElement(PollListManager.class.getName());
-        ((Element) stack.peek()).appendChild(element);
-        stack.push(element);
-
-        List pollsList = findAllPolls(siteId);
-        log.debug("got list of " + pollsList.size() + " polls");
-        for (int i = 0; pollsList.size() > i; i++) {
-            try {
-                Poll poll = (Poll) pollsList.get(i);
-                log.info("got poll " + poll.getId());
-
-                // archive this assignment
-                Element el = poll.toXml(doc, stack);
-
-                // get the options
-                List options = getOptionsForPoll(poll);
-
-                for (int q = 0; options.size() > q; q++) {
-                    Option opt = (Option) options.get(q);
-                    Element el2 = PollUtil.optionToXml(opt, doc, stack);
-                    el.appendChild(el2);
-                }
-
-                element.appendChild(el);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } // while
-
-        stack.pop();
-
-        return results.toString();
-    }
-
-    public String merge(String arg0, Element arg1, String arg2, String arg3, Map arg4, Map arg5,
-            Set arg6) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public boolean parseEntityReference(String reference, Reference ref) {
-        if (reference.startsWith(REFERENCE_ROOT)) {
-            // /syllabus/siteid/syllabusid
-            String[] parts = split(reference, Entity.SEPARATOR);
-
-            String subType = "";
-            String context = null;
-            String id = null;
-            String container = "";
-
-            if (parts.length > 2) {
-                // the site/context
-                context = parts[2];
-
-                // the id
-                if (parts.length > 3) {
-                    id = parts[3];
-                }
-            }
-
-            ref.set(PollListManager.class.getName(), subType, id, container, context);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public String getEntityDescription(Reference arg0) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public ResourceProperties getEntityResourceProperties(Reference arg0) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public Entity getEntity(Reference ref) {
-        // TODO Auto-generated method stub
-        Entity rv = null;
-
-        if (REF_POLL_TYPE.equals(ref.getSubType())) {
-            rv = getPoll(ref.getReference());
-        }
-
-        return rv;
-    }
-
-    public String getEntityUrl(Reference arg0) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public Collection getEntityAuthzGroups(Reference arg0, String arg1) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public HttpAccess getHttpAccess() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public String[] myToolIds()
-		{
-			String[] toolIds = { "sakai.poll"};
-			return toolIds;
-		}
-
-
-		public void transferCopyEntities(String fromContext, String toContext, List resourceIds, boolean condition){
-			transferCopyEntities(fromContext, toContext, resourceIds);
-		}
-
-		public void transferCopyEntities(String fromContext, String toContext, List resourceIds){
-			try{
-				Iterator<Poll> fromPolls = findAllPolls(fromContext).iterator();
-				while (fromPolls.hasNext()){
-					Poll fromPoll = fromPolls.next();
-					Poll fromPollV = getPollWithVotes(fromPoll.getPollId());
-					Poll toPoll = (Poll) new Poll();
-					toPoll.setOwner(fromPollV.getOwner());
-					toPoll.setSiteId(toContext);
-			        toPoll.setCreationDate(fromPollV.getCreationDate());
-			        toPoll.setText(fromPollV.getText());
-			        toPoll.setMinOptions(fromPollV.getMinOptions());
-			        toPoll.setMaxOptions(fromPollV.getMaxOptions());
-			        toPoll.setVoteOpen(fromPollV.getVoteOpen());		       
-			        toPoll.setVoteClose(fromPollV.getVoteClose());		       
-			        toPoll.setDisplayResult(fromPollV.getDisplayResult());
-			        toPoll.setLimitVoting(fromPollV.getLimitVoting());
-			        toPoll.setDetails(fromPollV.getDetails());
-			        
-			        //Guardamos toPoll para que se puedan ir añandiéndole las opciones y los votos
-			        savePoll(toPoll);
-			        
-			        //Añadimos las opciones
-			        List<Option> options = getOptionsForPoll(fromPoll);
-			        if (options!=null){
-				        Iterator<Option> fromOptions = options.iterator();
-				        while (fromOptions.hasNext()){
-				        	Option fromOption = (Option) fromOptions.next();
-				        	Option toOption = (Option) new Option();
-				        	toOption.setOptionText(fromOption.getOptionText());
-				        	toOption.setStatus(fromOption.getStatus());
-				        	toOption.setPollId(toPoll.getPollId());
-				        	saveOption(toOption);
-				        	
-				        	toPoll.addOption(toOption);
-				        }
-			        }
-
-			        //Añadimos los votos
-			        List<Vote> votes = fromPollV.getVotes();
-			        if (votes!=null){
-			        	Iterator<Vote> fromVotes = votes.iterator();
-			        	while (fromVotes.hasNext()){
-			        		toPoll.addVote((Vote)fromVotes.next());
-			        	}
-			        }
-	
-			        //Actualizamos toPoll
-			        savePoll(toPoll);
-				}
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-
-
-    protected String[] split(String source, String splitter) {
-        // hold the results as we find them
-        Vector<String> rv = new Vector<String>();
-        int last = 0;
-        int next = 0;
-        do {
-            // find next splitter in source
-            next = source.indexOf(splitter, last);
-            if (next != -1) {
-                // isolate from last thru before next
-                rv.add(source.substring(last, next));
-                last = next + splitter.length();
-            }
-        } while (next != -1);
-        if (last < source.length()) {
-            rv.add(source.substring(last, source.length()));
-        }
-
-        // convert to array
-        return (String[]) rv.toArray(new String[rv.size()]);
-
-    } // split
 
     public Poll getPoll(String ref) {
         // we need to get the options here
@@ -587,7 +332,7 @@ public class PollListManagerImpl implements PollListManager,EntityTransferrer {
         Poll poll = dao.findOneBySearch(Poll.class, search);
         // if the id is null set it
         if (poll.getId() == null) {
-            poll.setId(idManager.createUuid());
+            poll.setId(externalLogic.getNewUUID());
             savePoll(poll);
         }
         return poll;
