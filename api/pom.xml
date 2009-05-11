@@ -14,21 +14,4 @@
     This project creates the logic APIs used by the Sakai Poll Tool
   </description>
   <packaging>jar</packaging>
-  <properties>
-    <deploy.target>shared</deploy.target>
-  </properties>
-  <dependencies>
-    <dependency>
-      <groupId>org.sakaiproject.kernel</groupId>
-      <artifactId>sakai-kernel-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.sakaiproject.kernel</groupId>
-      <artifactId>sakai-component-manager</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-lang</groupId>
-      <artifactId>commons-lang</artifactId>
-    </dependency>
-  </dependencies>
 </project>

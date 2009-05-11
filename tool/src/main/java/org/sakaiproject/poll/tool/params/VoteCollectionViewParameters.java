@@ -1,6 +1,6 @@
 /**********************************************************************************
- * $URL:$
- * $Id:$
+ * $URL$
+ * $Id$
  ***********************************************************************************
  *
  * Copyright (c) 2008 The Sakai Foundation
@@ -19,18 +19,25 @@
  *
  **********************************************************************************/
 
-package org.sakaiproject.poll.dao;
+package org.sakaiproject.poll.tool.params;
 
-import org.sakaiproject.genericdao.api.GeneralGenericDao;
-import org.sakaiproject.poll.model.Poll;
+import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 
-public interface PollDao extends GeneralGenericDao {
+public class VoteCollectionViewParameters extends SimpleViewParameters {
 	
-	/**
-	 * Get the number of distinct voters on a poll
-	 * @param poll
-	 * @return
-	 */
-	 public int getDisctinctVotersForPoll(Poll poll);
+	public String id;
+	
+	public VoteCollectionViewParameters() {
+		
+	}
+	
+	public VoteCollectionViewParameters(String viewId) {
+		this.viewID = viewId;
+	}
+	
+	public VoteCollectionViewParameters(String viewId, String id) {
+		this.viewID = viewId;
+		this.id = id;
+	}
 
 }
