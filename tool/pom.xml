@@ -98,5 +98,15 @@
         </configuration>
       </plugin>
   </plugins>
+  <!--     <resources>
+      <resource>
+        <directory>${basedir}/src/main/bundle</directory>
+        <includes>
+          <include>**/*.*</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+      </resources>
+       -->
 </build>
 </project>
