@@ -38,12 +38,12 @@ public class ExternalLogicImpl implements ExternalLogic {
 
 	public String getCurrentLocationId() {
 		// TODO Auto-generated method stub
-		return null;
+		return "something";
 	}
 
 	public String getCurrentLocationReference() {
 		// TODO Auto-generated method stub
-		return null;
+		return "/site/something";
 	}
 
 	public String getCurrentUserId() {
@@ -58,7 +58,7 @@ public class ExternalLogicImpl implements ExternalLogic {
 
 	public TimeZone getLocalTimeZone() {
 		// TODO Auto-generated method stub
-		return null;
+		return TimeZone.getDefault();
 	}
 
 	public String getNewUUID() {

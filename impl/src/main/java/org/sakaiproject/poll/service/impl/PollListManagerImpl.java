@@ -160,7 +160,7 @@ public class PollListManagerImpl implements PollListManager {
         }
 
         // we may need to truncate the description field
-        if (t.getDetails().length() > 254)
+        if (t.getDetails() != null && t.getDetails().length() > 254)
             t.setDetails(t.getDetails().substring(0, 254));
 
        
