@@ -26,8 +26,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import org.sakaiproject.entitybroker.DeveloperHelperService;
-import org.sakaiproject.entitybroker.util.SakaiToolData;
+import org.sakaiproject.entitybus.DeveloperHelperService;
+//import org.sakaiproject.entitybus.util.SakaiToolData;
 
 public class DeveloperHelperServiceStub implements DeveloperHelperService {
 
@@ -143,12 +143,12 @@ public class DeveloperHelperServiceStub implements DeveloperHelperService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+/*
 	public SakaiToolData getToolData(String arg0, String arg1) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
 	public String getToolIdFromToolRef(String arg0) {
 		// TODO Auto-generated method stub
 		return null;

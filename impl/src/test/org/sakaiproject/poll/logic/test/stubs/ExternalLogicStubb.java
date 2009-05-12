@@ -159,4 +159,19 @@ public class ExternalLogicStubb implements ExternalLogic {
 		return currentUserId;
 	}
 
+	public String escapeFormatedText(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getCurrentSessionIP() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getNewUUID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

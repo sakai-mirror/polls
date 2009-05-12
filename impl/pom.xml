@@ -148,6 +148,11 @@
                "**/*Test.java" - includes all of its subdirectory and all java filenames that end with "Test".
                "**/*TestCase.java" - includes all of its subdirectory and all java filenames that end with "TestCase".
             -->
+           <!--  <configuration>
+            	<includes>
+            	 <include>"**/PollListManagerTest.java"</include>
+            	</includes> 
+            </configuration>-->
          </plugin>
         <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -157,11 +162,12 @@
           <target>1.5</target>
         </configuration>
       </plugin>
-  
-      </plugins>
+  		</plugins>
+  		 <testSourceDirectory>src/test/</testSourceDirectory>
+  		 
       <testResources>
          <testResource>
-            <directory>${basedir}/../tool/src/webapp/WEB-INF</directory>
+            <directory>${basedir}/../tool/src/main/webapp/WEB-INF</directory>
             <includes>
                <include>spring-hibernate.xml</include>
                <include>logic-support.xml</include>
@@ -174,6 +180,14 @@
                <include>hibernate.properties</include>
             </includes>
          </testResource>
+                     <testResource>
+                <directory>${basedir}/src/test/java</directory>
+            
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </testResource>
+            
       </testResources>
    
   

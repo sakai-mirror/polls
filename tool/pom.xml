@@ -9,7 +9,7 @@
   </parent>
   <name>sakai-poll-tool</name>
   <groupId>org.sakaiproject.polls</groupId>
-  <artifactId>sakai-poll-tool</artifactId>
+  <artifactId>poll-tool</artifactId>
   <description>
         This project creates a WAR containing the Poll Tool for Sakai.
     </description>
@@ -105,6 +105,7 @@
         </repository>
     </repositories>
 <build>
+	<finalName>${artifactId}</finalName>
 	<plugins>
 	<plugin>
         <groupId>org.apache.maven.plugins</groupId>
