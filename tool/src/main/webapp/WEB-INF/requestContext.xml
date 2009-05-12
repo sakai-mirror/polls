@@ -130,9 +130,9 @@
 	</bean>
 
 	<bean id="voteCollection"
-		class="org.sakaiproject.poll.model.VoteCollection" />
-	<bean id="option" class="org.sakaiproject.poll.model.Option" />
-	<bean id="poll" class="org.sakaiproject.poll.model.Poll" />
+		class="org.sakaiproject.poll.api.model.VoteCollection" />
+	<bean id="option" class="org.sakaiproject.poll.api.model.Option" />
+	<bean id="poll" class="org.sakaiproject.poll.api.model.Poll" />
 
 
 
