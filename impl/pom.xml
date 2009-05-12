@@ -136,23 +136,7 @@
    
   </dependencies>
   <build>
-    <resources>
-      <resource>
-        <directory>${basedir}/src/bundle</directory>
-        <includes>
-          <include>**/*.*</include>
-        </includes>
-        <filtering>false</filtering>
-      </resource>
-      <resource>
-        <directory>${basedir}/src/main/java</directory>
-        <includes>
-          <include>**/*.xml</include>
-          <include>**/*.xslt</include>
-        </includes>
-        <filtering>false</filtering>
-      </resource>
-    </resources>
+
       <!-- unit testing -->
       <plugins>
          <plugin>
