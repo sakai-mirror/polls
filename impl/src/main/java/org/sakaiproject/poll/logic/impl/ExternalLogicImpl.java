@@ -94,29 +94,29 @@ public class ExternalLogicImpl implements ExternalLogic {
 	public boolean isAllowedInLocation(String permission,
 			String locationReference) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public boolean isAllowedInLocation(String permission,
 			String locationReference, String userRefence) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public boolean isRoleAllowedInRealm(String roleId, String realmId,
 			String permission) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public boolean isUserAdmin(String userId) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public boolean isUserAdmin() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public void postEvent(String eventId, String reference, boolean modify) {
