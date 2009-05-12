@@ -48,12 +48,12 @@ public class ExternalLogicImpl implements ExternalLogic {
 
 	public String getCurrentUserId() {
 		// TODO Auto-generated method stub
-		return null;
+		return "admin";
 	}
 
 	public String getCurrentuserReference() {
 		// TODO Auto-generated method stub
-		return null;
+		return "/usr/admin";
 	}
 
 	public TimeZone getLocalTimeZone() {
@@ -78,12 +78,12 @@ public class ExternalLogicImpl implements ExternalLogic {
 
 	public String getSiteRefFromId(String siteId) {
 		// TODO Auto-generated method stub
-		return null;
+		return "/site" + siteId;
 	}
 
 	public String getSiteTile(String locationReference) {
 		// TODO Auto-generated method stub
-		return null;
+		return "My site";
 	}
 
 	public List<String> getSitesForUser(String userId, String permission) {
@@ -138,12 +138,12 @@ public class ExternalLogicImpl implements ExternalLogic {
 
 	public String getCurrentSessionIP() {
 		// TODO Auto-generated method stub
-		return null;
+		return "localhost";
 	}
 
 	public String escapeFormatedText(String text) {
 		// TODO Auto-generated method stub
-		return null;
+		return text;
 	}
 	
 
