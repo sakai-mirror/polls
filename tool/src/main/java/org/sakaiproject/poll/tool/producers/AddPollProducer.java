@@ -226,6 +226,8 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 
 		UIInput itemDescr = UIInput.make(newPoll, "newpolldescr:", "#{poll.details}", poll.getDetails()); //$NON-NLS-1$ //$NON-NLS-2$
 		//itemDescr.decorators = new DecoratorList(new UITextDimensionsDecorator(4, 4));
+		
+		//TODO there is currently no rich text evolver in the non sakai components
 		richTextEvolver.evolveTextInput(itemDescr);
 		UILabelTargetDecorator.targetLabel(pollDescr, itemDescr);
 

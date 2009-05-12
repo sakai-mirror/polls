@@ -25,6 +25,7 @@
 		<property name="poll" ref="poll" />
 		<property name="localeGetter" ref="requestLocaleProxy" />
 		<property name="messages" ref="targettedMessageList" />
+		<property name="externalLogic" ref="org.sakaiproject.poll.logic.ExternalLogic"/>
 	</bean>
 
 
@@ -79,7 +80,7 @@
 			ref="org.sakaiproject.tool.poll.api.PollListManager" />
 		<property name="targettedMessageList"
 			ref="targettedMessageList" />
-		<property name="richTextEvolver" ref="richTextEvolver" />
+		<property name="richTextEvolver" ref="plainTextInputEvolver" /> 
 	</bean>
 
 	<bean id="pollOptionDeleteProducer"
@@ -96,7 +97,7 @@
 		<property name="messageLocator" ref="messageLocator" />
 		<property name="pollListManager"
 			ref="org.sakaiproject.tool.poll.api.PollListManager" />
-		<property name="richTextEvolver" ref="richTextEvolver" />
+		<property name="richTextEvolver" ref="plainTextInputEvolver" />
 		<property name="targettedMessageList"
 			ref="targettedMessageList" />
 		<property name="dateEvolver" ref="fieldDateInputEvolver" />
