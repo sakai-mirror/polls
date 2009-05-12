@@ -144,7 +144,7 @@ DefaultView,NavigationCaseReporter {
 						new PollViewParameters(AddPollProducer.VIEW_ID, "New 0"));
 			} 
 			if (this.isSiteOwner()) {
-				UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
+				//UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
 			} 
 		}
 
