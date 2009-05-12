@@ -42,10 +42,6 @@
 		</site>
         </distributionManagement>
   <modules>
-    <module>api</module>
-    <!--<module>poll-help</module>-->
-    <module>impl</module>
-    <!--<module>pack</module>-->
     <module>tool</module>
   </modules>
   <dependencyManagement>
@@ -161,5 +157,6 @@
       </snapshots>
 </repository>
 </repositories>
+
 
 </project>

@@ -28,8 +28,8 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.sakaiproject.genericdao.hibernate.HibernateGeneralGenericDao;
-import org.sakaiproject.poll.dao.PollDao;
-import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.impl.dao.PollDao;
+import org.sakaiproject.poll.api.model.Poll;
 
 public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
 

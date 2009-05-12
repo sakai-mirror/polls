@@ -19,13 +19,13 @@
  *
  **********************************************************************************/
 
-package org.sakaiproject.poll.logic;
+package org.sakaiproject.poll.api.logic;
 
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
-import org.sakaiproject.poll.model.PollRolePerms;
+import org.sakaiproject.poll.api.model.PollRolePerms;
 
 public interface ExternalLogic {
 

@@ -22,31 +22,22 @@
 package org.sakaiproject.poll.impl.service.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
 import java.util.UUID;
-import java.util.Vector;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.genericdao.api.search.Order;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
-import org.sakaiproject.poll.dao.PollDao;
-import org.sakaiproject.poll.logic.ExternalLogic;
-import org.sakaiproject.poll.logic.PollListManager;
-import org.sakaiproject.poll.model.Option;
-import org.sakaiproject.poll.model.Poll;
-import org.sakaiproject.poll.model.Vote;
-import org.sakaiproject.poll.util.PollUtil;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
+import org.sakaiproject.poll.api.logic.ExternalLogic;
+import org.sakaiproject.poll.api.logic.PollListManager;
+import org.sakaiproject.poll.api.model.Option;
+import org.sakaiproject.poll.api.model.Poll;
+import org.sakaiproject.poll.api.model.Vote;
+import org.sakaiproject.poll.impl.dao.PollDao;
+ 
 
 
 public class PollListManagerImpl implements PollListManager {

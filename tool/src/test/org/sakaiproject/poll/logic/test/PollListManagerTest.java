@@ -25,10 +25,11 @@ import java.util.Date;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.poll.dao.PollDao;
+import org.sakaiproject.poll.impl.dao.PollDao;
+import org.sakaiproject.poll.impl.service.impl.PollListManagerImpl;
 import org.sakaiproject.poll.logic.test.stubs.ExternalLogicStubb;
-import org.sakaiproject.poll.model.Poll;
-import org.sakaiproject.poll.service.impl.PollListManagerImpl;
+import org.sakaiproject.poll.api.model.Poll;
+
 import org.springframework.test.AbstractTransactionalSpringContextTests;
 
 public class PollListManagerTest extends AbstractTransactionalSpringContextTests {

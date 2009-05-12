@@ -24,8 +24,8 @@ package org.sakaiproject.poll.tool.params;
 import java.io.Serializable;
 
 
-import org.sakaiproject.poll.model.Poll;
-import org.sakaiproject.poll.model.VoteCollection;
+import org.sakaiproject.poll.api.model.Poll;
+import org.sakaiproject.poll.api.model.VoteCollection;
 
 public class VoteBean implements Serializable {
 

@@ -38,11 +38,11 @@ import org.sakaiproject.entitybus.entityprovider.extension.TemplateMap;
 import org.sakaiproject.entitybus.entityprovider.search.Restriction;
 import org.sakaiproject.entitybus.entityprovider.search.Search;
 //import org.sakaiproject.entitybus.util.AbstractEntityProvider;
-import org.sakaiproject.poll.logic.PollListManager;
-import org.sakaiproject.poll.logic.PollVoteManager;
-import org.sakaiproject.poll.model.Option;
-import org.sakaiproject.poll.model.Poll;
-import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.api.logic.PollListManager;
+import org.sakaiproject.poll.api.logic.PollVoteManager;
+import org.sakaiproject.poll.api.model.Option;
+import org.sakaiproject.poll.api.model.Poll;
+import org.sakaiproject.poll.api.model.Vote;
 
 
 /**

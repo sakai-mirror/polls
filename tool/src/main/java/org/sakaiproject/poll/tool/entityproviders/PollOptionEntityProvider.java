@@ -31,9 +31,9 @@ import org.sakaiproject.entitybus.entityprovider.capabilities.RESTful;
 import org.sakaiproject.entitybus.entityprovider.extension.Formats;
 import org.sakaiproject.entitybus.entityprovider.search.Restriction;
 import org.sakaiproject.entitybus.entityprovider.search.Search;
-import org.sakaiproject.poll.logic.PollListManager;
-import org.sakaiproject.poll.model.Option;
-import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.api.logic.PollListManager;
+import org.sakaiproject.poll.api.model.Option;
+import org.sakaiproject.poll.api.model.Poll;
 
 
 /**

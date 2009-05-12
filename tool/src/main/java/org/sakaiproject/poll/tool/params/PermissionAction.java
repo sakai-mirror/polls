@@ -25,7 +25,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.poll.logic.ExternalLogic;
+import org.sakaiproject.poll.api.logic.ExternalLogic;
 
 public class PermissionAction {
 

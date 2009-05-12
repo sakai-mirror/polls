@@ -24,8 +24,8 @@ package org.sakaiproject.poll.tool.locators;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.sakaiproject.poll.logic.PollListManager;
-import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.api.logic.PollListManager;
+import org.sakaiproject.poll.api.model.Poll;
 
 import uk.org.ponder.beanutil.BeanLocator;
 

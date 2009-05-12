@@ -26,12 +26,12 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.poll.logic.ExternalLogic;
-import org.sakaiproject.poll.logic.PollListManager;
-import org.sakaiproject.poll.logic.PollVoteManager;
-import org.sakaiproject.poll.model.Option;
-import org.sakaiproject.poll.model.Poll;
-import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.api.logic.ExternalLogic;
+import org.sakaiproject.poll.api.logic.PollListManager;
+import org.sakaiproject.poll.api.logic.PollVoteManager;
+import org.sakaiproject.poll.api.model.Option;
+import org.sakaiproject.poll.api.model.Poll;
+import org.sakaiproject.poll.api.model.Vote;
 import org.sakaiproject.poll.tool.params.OptionViewParameters;
 import org.sakaiproject.poll.tool.params.PollViewParameters;
 import org.sakaiproject.poll.tool.params.VoteBean;
@@ -331,7 +331,7 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 
 		Poll poll = null;
 
-		if(actionReturn instanceof org.sakaiproject.poll.model.Poll) {
+		if(actionReturn instanceof org.sakaiproject.poll.api.model.Poll) {
 			poll = (Poll) actionReturn;
 		}
 		else {

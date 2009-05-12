@@ -19,19 +19,16 @@
  *
  **********************************************************************************/
 
-package org.sakaiproject.poll.model;
+package org.sakaiproject.poll.api.model;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Stack;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
-import com.sun.org.apache.xerces.internal.impl.XMLEntityManager.Entity;
+
 
 public class Poll  {
 

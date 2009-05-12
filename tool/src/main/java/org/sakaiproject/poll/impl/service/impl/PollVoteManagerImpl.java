@@ -30,12 +30,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
-import org.sakaiproject.poll.dao.PollDao;
-import org.sakaiproject.poll.logic.ExternalLogic;
-import org.sakaiproject.poll.logic.PollListManager;
-import org.sakaiproject.poll.logic.PollVoteManager;
-import org.sakaiproject.poll.model.Poll;
-import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.impl.dao.PollDao;
+import org.sakaiproject.poll.api.logic.ExternalLogic;
+import org.sakaiproject.poll.api.logic.PollListManager;
+import org.sakaiproject.poll.api.logic.PollVoteManager;
+import org.sakaiproject.poll.api.model.Poll;
+import org.sakaiproject.poll.api.model.Vote;
 
 
 

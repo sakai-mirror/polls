@@ -27,8 +27,8 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.poll.logic.ExternalLogic;
-import org.sakaiproject.poll.logic.PollListManager;
+import org.sakaiproject.poll.api.logic.ExternalLogic;
+import org.sakaiproject.poll.api.logic.PollListManager;
 
 import uk.org.ponder.beanutil.PathUtil;
 import uk.org.ponder.messageutil.MessageLocator;

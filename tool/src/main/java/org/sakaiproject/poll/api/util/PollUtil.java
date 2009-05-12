@@ -19,11 +19,11 @@
  *
  **********************************************************************************/
 
-package org.sakaiproject.poll.util;
+package org.sakaiproject.poll.api.util;
 
 import java.util.Stack;
 
-import org.sakaiproject.poll.model.Option;
+import org.sakaiproject.poll.api.model.Option;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

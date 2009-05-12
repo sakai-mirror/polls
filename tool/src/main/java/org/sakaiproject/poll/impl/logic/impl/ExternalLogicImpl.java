@@ -27,8 +27,9 @@ import java.util.TimeZone;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.poll.logic.ExternalLogic;
-import org.sakaiproject.poll.model.PollRolePerms;
+
+import org.sakaiproject.poll.api.logic.ExternalLogic;
+import org.sakaiproject.poll.api.model.PollRolePerms;
 
 
 

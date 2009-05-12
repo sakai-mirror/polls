@@ -19,12 +19,12 @@
  *
  **********************************************************************************/
 
-package org.sakaiproject.poll.logic;
+package org.sakaiproject.poll.api.logic;
 
 import java.util.List;
 
-import org.sakaiproject.poll.model.Option;
-import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.api.model.Option;
+import org.sakaiproject.poll.api.model.Poll;
 
 /**
  * This is the interface for the Manager for our poll tool, 

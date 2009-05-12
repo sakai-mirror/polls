@@ -27,9 +27,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
-import org.sakaiproject.poll.logic.ExternalLogic;
+import org.sakaiproject.poll.api.logic.ExternalLogic;
 import org.sakaiproject.poll.logic.test.TestDataPreload;
-import org.sakaiproject.poll.model.PollRolePerms;
+import org.sakaiproject.poll.api.model.PollRolePerms;
 
 public class ExternalLogicStubb implements ExternalLogic {
 

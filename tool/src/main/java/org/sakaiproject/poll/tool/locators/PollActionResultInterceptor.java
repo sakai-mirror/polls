@@ -20,7 +20,7 @@
  **********************************************************************************/
 package org.sakaiproject.poll.tool.locators;
 
-import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.api.model.Poll;
 import org.sakaiproject.poll.tool.params.PollViewParameters;
 
 import uk.org.ponder.rsf.flow.ARIResult;

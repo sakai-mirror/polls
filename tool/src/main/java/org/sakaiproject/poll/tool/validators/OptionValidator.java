@@ -24,9 +24,9 @@ package org.sakaiproject.poll.tool.validators;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.poll.logic.ExternalLogic;
-import org.sakaiproject.poll.model.Option;
-import org.sakaiproject.poll.util.PollUtils;
+import org.sakaiproject.poll.api.logic.ExternalLogic;
+import org.sakaiproject.poll.api.model.Option;
+import org.sakaiproject.poll.api.util.PollUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

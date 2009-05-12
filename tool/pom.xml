@@ -17,12 +17,8 @@
 		<sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
 		<rsfutil.version>0.7.4</rsfutil.version>
 	</properties>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<dependencies>
-		<dependency>
-			<groupId>org.sakaiproject.polls</groupId>
-			<artifactId>poll-impl</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject.entitybus</groupId>
 			<artifactId>entitybus-api</artifactId>
@@ -30,13 +26,20 @@
 		<dependency>
 			<groupId>org.sakaiproject.entitybus</groupId>
 			<artifactId>entitybus-utils</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>servelet-api</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
+		<dependency>
+    	<groupId>org.sakaiproject</groupId>
+    	<artifactId>generic-dao</artifactId>
+    	<version>0.9.16</version>
+    </dependency>
+   <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate</artifactId>
+    </dependency>
+        <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring</artifactId>
+    </dependency>
 
 
 <!-- Webapp uses commons-logging internally -->
@@ -220,6 +223,13 @@
 			</testResource>
 		</testResources>
 		<resources>
+		<resource>
+				<directory>${basedir}/src/main/java</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
 			<resource>
 				<directory>${basedir}/src/main/bundle</directory>
 				<includes>

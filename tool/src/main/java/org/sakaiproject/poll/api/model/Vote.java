@@ -19,7 +19,7 @@
  *
  **********************************************************************************/
 
-package org.sakaiproject.poll.model;
+package org.sakaiproject.poll.api.model;
 
 import java.util.Date;
 

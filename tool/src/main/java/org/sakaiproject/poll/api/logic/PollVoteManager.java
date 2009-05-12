@@ -20,13 +20,13 @@
  **********************************************************************************/
 
 
-package org.sakaiproject.poll.logic;
+package org.sakaiproject.poll.api.logic;
 
 import java.util.List;
 import java.util.Map;
 
-import org.sakaiproject.poll.model.Poll;
-import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.api.model.Poll;
+import org.sakaiproject.poll.api.model.Vote;
 
 public interface PollVoteManager {
 

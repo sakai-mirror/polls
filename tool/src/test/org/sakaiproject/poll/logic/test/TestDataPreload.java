@@ -24,8 +24,8 @@ package org.sakaiproject.poll.logic.test;
 import java.util.Date;
 
 import org.sakaiproject.genericdao.api.GenericDao;
-import org.sakaiproject.poll.model.Option;
-import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.api.model.Option;
+import org.sakaiproject.poll.api.model.Poll;
 
 public class TestDataPreload {
 

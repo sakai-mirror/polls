@@ -19,7 +19,7 @@
  *
  **********************************************************************************/
 
-package org.sakaiproject.poll.util;
+package org.sakaiproject.poll.api.util;
 
 public class PollUtils {
 

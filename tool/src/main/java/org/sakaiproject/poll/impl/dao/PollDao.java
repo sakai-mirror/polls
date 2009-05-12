@@ -22,7 +22,7 @@
 package org.sakaiproject.poll.impl.dao;
 
 import org.sakaiproject.genericdao.api.GeneralGenericDao;
-import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.api.model.Poll;
 
 public interface PollDao extends GeneralGenericDao {
 	

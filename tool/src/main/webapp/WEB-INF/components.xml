@@ -14,20 +14,20 @@
 
 	<!-- create a logic bean, give it the dao from above and some sakai services -->
 		<bean id="org.sakaiproject.tool.poll.api.PollListManager"
-		class="org.sakaiproject.poll.service.impl.PollListManagerImpl"
+		class="org.sakaiproject.poll.impl.service.impl.PollListManagerImpl"
 		lazy-init="true" init-method="init">
 		<property name="dao" ref="org.sakaiproject.poll.dao.PollDao"/>
 		<property name="externalLogic" ref="org.sakaiproject.poll.logic.ExternalLogic"/>
     </bean>
 
 	<bean id="org.sakaiproject.tool.poll.api.PollVoteManager"
-		class="org.sakaiproject.poll.service.impl.PollVoteManagerImpl"
+		class="org.sakaiproject.poll.impl.service.impl.PollVoteManagerImpl"
 		lazy-init="true">
 		<property name="dao" ref="org.sakaiproject.poll.dao.PollDao"/>
 		<property name="externalLogic" ref="org.sakaiproject.poll.logic.ExternalLogic"/>
 	</bean>
 
-	<bean id="org.sakaiproject.poll.logic.ExternalLogic" class="org.sakaiproject.poll.logic.impl.ExternalLogicImpl">
+	<bean id="org.sakaiproject.poll.logic.ExternalLogic" class="org.sakaiproject.poll.impl.logic.impl.ExternalLogicImpl">
 	
 	</bean>
 
