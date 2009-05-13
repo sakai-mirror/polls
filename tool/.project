@@ -1,7 +1,6 @@
 <projectDescription>
   <name>poll-tool</name>
-  <comment>This project creates a WAR containing the Poll Tool for
-		Sakai.</comment>
+  <comment>An OSGI bundle containing the poll tool for Sakai</comment>
   <projects/>
   <buildSpec>
     <buildCommand>

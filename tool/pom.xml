@@ -11,13 +11,12 @@
 	<name>sakai-poll-tool</name>
 	<groupId>org.sakaiproject.polls</groupId>
 	<artifactId>poll-tool</artifactId>
-	<description> This project creates a WAR containing the Poll Tool for
-		Sakai. </description>
+	<description>An OSGI bundle containing the poll tool for Sakai</description>
 	<properties>
 		<sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
 		<rsfutil.version>0.7.4</rsfutil.version>
 	</properties>
-	<packaging>war</packaging>
+	<packaging>bundle</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>org.sakaiproject.entitybus</groupId>
@@ -142,6 +141,17 @@
 			<version>2.0.8</version>
 			<scope>provided</scope>
 		</dependency>
+	    <!-- OSGi -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi_R4_compendium</artifactId>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
   <!-- for RSF snapshots -->
@@ -157,7 +167,6 @@
 		</repository>
 	</repositories>
 	<build>
-		<finalName>${artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -173,9 +182,18 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Export-Package>org.sakaiproject.poll.model</Export-Package>
-						<Private-Package>org.sakaiproject.poll.*</Private-Package>
-						<Import-Package>org.sakaiproject.poll.model.*</Import-Package>
+     					<Bundle-Activator>org.sakaiproject.poll.tool.osgi.PollsActivator</Bundle-Activator> -->
+     					<Embed-Dependency>*;scope=compile|runtime;inline=false</Embed-Dependency>
+                        <Embed-Transitive>true</Embed-Transitive>
+						<Export-Package/>
+						<Import-Package>!org.springframework.mock.web,!org.springframework.test,!org.quartz.*,
+						!sun.reflect.generics.reflectiveObjects,!org.relaxng.datatype,!bsh,!com.caucho.*,!com.ibatis.*,!com.ibm.*,!freemarker.*,!javax.mail.*,
+						!javax.servlet.jsp.jstl.*,!javax.xml.rpc.*,!javax.xml.soap.*,!javax.xml.transform.stax,!javax.xml.ws,!javax.xml.ws.*,!net.sf.*,!jxl,!jxl.write,
+						!oracle.*,!org.apache.*,!org.aspectj.*,!org.enhydra.jdbc.core,version,!org.jaxen.*,!org.jboss.*,!org.jruby,!org.jruby.*,!org.objectweb.*,
+						!org.logicalcobwebs.*,!org.hibernate.ejb,!org.gjt.xpp,!org.codehaus.aspectwerkz.hook,!javax.security.jacc,!javax.resource.*,!javax.faces.*,!javax.interceptor,
+						!javax.jdo,!javax.jdo.*,!javax.jms,!javax.jws,!javax.annotation,!javax.ejb,!javassist,!javassist.*,!edu.emory.mathcs.backport.java.util.concurrent,
+						!commonj.*,!com.jamonapi,!com.lowagie.text.*,!com.mchange.v2.c3p0,!com.opensymphony.oscache.*,!com.sun.*,!version,*</Import-Package>
+						
 					</instructions>
 				</configuration>
 			</plugin>
