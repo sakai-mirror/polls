@@ -23,10 +23,41 @@
     <relativePath>../master/pom.xml</relativePath>
   </parent>
   <scm>
-    <connection>scm:svn:https://source.sakaiproject.org/svn/pols/tags/polls-1.1.1</connection>
+    <connection>scm:svn:https://source.sakaiproject.org/svn/polls/tags/polls-1.1.1</connection>
     <developerConnection>scm:svn:https://source.sakaiproject.org/svn/polls/tags/polls-1.1.1</developerConnection>
     <url>https://source.sakaiproject.org/svn/polls/tags/polls-1.1.1</url>
   </scm>
+    <distributionManagement>
+        <repository>
+            <id>sakai-maven2</id>
+            <name>Sakaiproject Maven 2 repository</name>
+            <url>dav:https://source.sakaiproject.org/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>sakai-maven2-snapshots</id>
+            <name>Sakaiproject Maven 2 repository</name>
+            <url>dav:https://source.sakaiproject.org/maven2-snapshots</url>
+        </snapshotRepository>
+	<site>
+            <id>local site</id>
+            <url>file:/tmp/entitybroker/site/</url>
+        </site>
+    </distributionManagement>    <distributionManagement>
+        <repository>
+            <id>sakai-maven2</id>
+            <name>Sakaiproject Maven 2 repository</name>
+            <url>dav:https://source.sakaiproject.org/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>sakai-maven2-snapshots</id>
+            <name>Sakaiproject Maven 2 repository</name>
+            <url>dav:https://source.sakaiproject.org/maven2-snapshots</url>
+        </snapshotRepository>
+	<site>
+            <id>local site</id>
+            <url>file:/tmp/polls/site/</url>
+        </site>
+    </distributionManagement>
   <modules>
     <module>api/logic</module>
     <module>api/model</module>
