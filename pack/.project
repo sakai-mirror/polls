@@ -1,8 +1,8 @@
 <projectDescription>
-  <name>sakai-poll-pack</name>
+  <name>polls-pack</name>
   <comment>This project creates the pack used by the Sakai Poll Tool</comment>
   <projects>
-    <project>poll-impl</project>
+    <project>polls-impl</project>
   </projects>
   <buildSpec>
     <buildCommand>

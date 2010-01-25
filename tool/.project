@@ -1,8 +1,8 @@
 <projectDescription>
-  <name>sakai-poll-tool</name>
+  <name>polls-tool</name>
   <comment>This project creates a WAR containing the Poll Tool for Sakai.</comment>
   <projects>
-    <project>poll-api</project>
+    <project>polls-api</project>
   </projects>
   <buildSpec>
     <buildCommand>
