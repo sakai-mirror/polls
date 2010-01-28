@@ -23,7 +23,7 @@
     <relativePath>../master/pom.xml</relativePath>
   </parent>
   <scm>
-    <connection>scm:svn:https://source.sakaiproject.org/svn/pols/branches/sakai_2-6-x</connection>
+    <connection>scm:svn:https://source.sakaiproject.org/svn/polls/branches/sakai_2-6-x</connection>
     <developerConnection>scm:svn:https://source.sakaiproject.org/svn/polls/branches/sakai_2-6-x</developerConnection>
     <url>https://source.sakaiproject.org/svn/polls/branches/sakai_2-6-x</url>
   </scm>
