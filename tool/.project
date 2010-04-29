@@ -1,6 +1,6 @@
 <projectDescription>
   <name>polls-tool</name>
-  <comment>This project creates a WAR containing the Poll Tool for Sakai.</comment>
+  <comment>This project creates a WAR containing the Poll Tool for Sakai. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
     <project>polls-api</project>
   </projects>
