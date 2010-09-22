@@ -74,6 +74,10 @@
 <!--org.sakaiprojectsakai-content-api${sakai.version}-->
 <!-- Spring dependency is required for validation within the webapp-->
 <!--${sakai.spring.groupId}${sakai.spring.artifactId}${sakai.spring.version}provided-->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+	</dependency>
 <!-- RSF dependencies -->
     <dependency>
       <groupId>uk.org.ponder.sakairsf</groupId>
