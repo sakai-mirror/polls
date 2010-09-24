@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.sakaiproject.purepoms</groupId>
         <artifactId>sakai-standard-tool</artifactId>
-        <version>2.8-SNAPSHOT</version>
+        <version>2.9-SNAPSHOT</version>
     </parent>
 
     <name>Sakai Polls Project base pom (polls)</name>
@@ -38,9 +37,9 @@
     </properties>
 
     <scm>
-        <connection>scm:svn:https://source.sakaiproject.org/svn/polls/trunk</connection>
-        <developerConnection>scm:svn:https://source.sakaiproject.org/svn/polls/trunk</developerConnection>
-        <url>https://source.sakaiproject.org/svn/polls/trunk</url>
+        <connection>scm:svn:https://source.sakaiproject.org/svn/polls/branches/polls-1.4.x</connection>
+        <developerConnection>scm:svn:https://source.sakaiproject.org/svn/polls/branches/polls-1.4.x</developerConnection>
+        <url>https://source.sakaiproject.org/svn/polls/branches/polls-1.4.x</url>
     </scm>
 
     <distributionManagement>
@@ -134,7 +133,7 @@
        <dependency>
         	<groupId>org.sakaiproject.emailtemplateservice</groupId>
         	<artifactId>emailtemplateservice-api</artifactId>
-        	<version>0.5-SNAPSHOT</version>
+        	<version>0.6-SNAPSHOT</version>
         	<scope>provided</scope>
         </dependency>
         	
