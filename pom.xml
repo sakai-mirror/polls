@@ -133,7 +133,7 @@
        <dependency>
         	<groupId>org.sakaiproject.emailtemplateservice</groupId>
         	<artifactId>emailtemplateservice-api</artifactId>
-        	<version>0.5.0-a01</version>
+        	<version>0.5.0-a02</version>
         	<scope>provided</scope>
         </dependency>
         	
