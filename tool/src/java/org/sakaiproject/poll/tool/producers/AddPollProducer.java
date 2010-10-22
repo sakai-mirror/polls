@@ -107,7 +107,7 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 	}
 
 
-	private ExternalLogic externalLogic;
+	private ExternalLogic externalLogic;    
 	public void setExternalLogic(ExternalLogic externalLogic) {
 		this.externalLogic = externalLogic;
 	}
@@ -156,11 +156,11 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 		LOG.debug("Poll of id: " + ecvp.id);
 		if (ecvp.id == null || "New 0".equals(ecvp.id)) {
 			UIMessage.make(tofill,"new_poll_title","new_poll_title");
-			//build an empty poll
+			//build an empty poll 
 			LOG.debug("this is a new poll");
 			poll = new Poll();
-		} else {
-			UIMessage.make(tofill,"new_poll_title","new_poll_title_edit");
+		} else { 
+			UIMessage.make(tofill,"new_poll_title","new_poll_title_edit");  
 
 			String strId = ecvp.id;
 			LOG.debug("got id of " + strId);
@@ -217,21 +217,22 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 		}
 
 		UIMessage.make(tofill, "new-poll-descr", "new_poll_title");
-		UIMessage.make(tofill, "new-poll-question-label", "new_poll_question_label");
-		UIMessage pollDescr = UIMessage.make(tofill, "new-poll-descr-label", "new_poll_descr_label");
+		UIMessage pollText = UIMessage.make(tofill, "new-poll-question-label", "new_poll_question_label");
+		UIMessage pollDescr = UIMessage.make(tofill, "new-poll-descr-label", "new_poll_descr_label"); 
 		UIMessage.make(tofill, "new-poll-descr-label2", "new_poll_descr_label2");
 
-		//UIMessage.make(tofill, "new-poll-open-label", "new_poll_open_label");
-		//UIMessage.make(tofill, "new-poll-close-label", "new_poll_close_label");
+		UIMessage.make(tofill, "new-poll-open-label", "new_poll_open_label");
+		UIMessage.make(tofill, "new-poll-close-label", "new_poll_close_label");
 
 		UIMessage.make(tofill, "new-poll-limits", "new_poll_limits");
-		//UIMessage pollMin = UIMessage.make(tofill, "new-poll-min-limits", "new_poll_min_limits");
-		//UIMessage pollMax =  UIMessage.make(tofill, "new-poll-max-limits", "new_poll_max_limits");
+		UIMessage pollMin = UIMessage.make(tofill, "new-poll-min-limits", "new_poll_min_limits");
+		UIMessage pollMax =  UIMessage.make(tofill, "new-poll-max-limits", "new_poll_max_limits");
 
 
 		//the form fields
-		UIInput.make(newPoll, "new-poll-text", "#{poll.text}",poll.getText());
-		
+
+		UIInput pollTextIn = UIInput.make(newPoll, "new-poll-text", "#{poll.text}",poll.getText());
+		UILabelTargetDecorator.targetLabel(pollText, pollTextIn);
 
 		UIInput itemDescr = UIInput.make(newPoll, "newpolldescr:", "#{poll.details}", poll.getDetails()); //$NON-NLS-1$ //$NON-NLS-2$
 		//itemDescr.decorators = new DecoratorList(new UITextDimensionsDecorator(4, 4));
@@ -246,25 +247,21 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 		//UILabelTargetDecorator.targetLabel(pollOpen, voteOpen);
 		//UILabelTargetDecorator.targetLabel(pollClose, voteClose);
 
-		/*
-		 * access options
-		 */
-		UIMessage.make(newPoll,"poll_access_label","new_poll_access_label");
-		UIBoundBoolean.make(newPoll, "access-public", "poll.isPublic", poll.getIsPublic());
-		
 
 		String[] minVotes = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
 		String[] maxVotes = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
 		UISelect min = UISelect.make(newPoll,"min-votes",minVotes,"#{poll.minOptions}",Integer.toString(poll.getMinOptions()));
 		UISelect max = UISelect.make(newPoll,"max-votes",maxVotes,"#{poll.maxOptions}",Integer.toString(poll.getMaxOptions()));
-	
+		UILabelTargetDecorator.targetLabel(pollMin, min);
+		UILabelTargetDecorator.targetLabel(pollMax, max);
+
 
 		/*
 		 * 	open - can be viewd at any time
 		 * 	never - not diplayed
 		 * 	afterVoting - after user has voted
 		 * 	afterClosing
-		 *
+		 * 
 		 */
 
 
@@ -273,7 +270,7 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 
 		String[] values = new String[] { "open", "afterVoting", "afterClosing","never"};
 		String[] labels = new String[] {
-				messageLocator.getMessage("new_poll_open"),
+				messageLocator.getMessage("new_poll_open"), 
 				messageLocator.getMessage("new_poll_aftervoting"),
 				messageLocator.getMessage("new_poll_afterClosing"),
 				messageLocator.getMessage("new_poll_never")
@@ -312,7 +309,7 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 			"#{pollToolBean.processActionAdd}");
 		} else {
 			UICommand.make(newPoll, "submit-new-poll", UIMessage.make("new_poll_submit"),
-			"#{pollToolBean.processActionAdd}");
+			"#{pollToolBean.processActionAdd}");		  
 		}
 
 		UICommand cancel = UICommand.make(newPoll, "cancel",UIMessage.make("new_poll_cancel"),"#{pollToolBean.cancel}");
@@ -359,7 +356,7 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 		}
 		// SAK-14726 : End BugFix
 
-		if (poll == null) {
+		if (poll == null) { 
 			return;
 		}
 
