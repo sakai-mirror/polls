@@ -217,7 +217,7 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 		}
 
 		UIMessage.make(tofill, "new-poll-descr", "new_poll_title");
-		UIMessage pollText = UIMessage.make(tofill, "new-poll-question-label", "new_poll_question_label");
+		UIMessage.make(tofill, "new-poll-question-label", "new_poll_question_label");
 		UIMessage pollDescr = UIMessage.make(tofill, "new-poll-descr-label", "new_poll_descr_label");
 		UIMessage.make(tofill, "new-poll-descr-label2", "new_poll_descr_label2");
 
@@ -230,8 +230,7 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 
 
 		//the form fields
-
-		UIInput pollTextIn = UIInput.make(newPoll, "new-poll-text", "#{poll.text}",poll.getText());
+		UIInput.make(newPoll, "new-poll-text", "#{poll.text}",poll.getText());
 		
 
 		UIInput itemDescr = UIInput.make(newPoll, "newpolldescr:", "#{poll.details}", poll.getDetails()); //$NON-NLS-1$ //$NON-NLS-2$
@@ -247,6 +246,12 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 		//UILabelTargetDecorator.targetLabel(pollOpen, voteOpen);
 		//UILabelTargetDecorator.targetLabel(pollClose, voteClose);
 
+		/*
+		 * access options
+		 */
+		UIMessage.make(newPoll,"poll_access_label","new_poll_access_label");
+		UIBoundBoolean.make(newPoll, "access-public", "poll.isPublic", poll.getIsPublic());
+		
 
 		String[] minVotes = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
 		String[] maxVotes = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
