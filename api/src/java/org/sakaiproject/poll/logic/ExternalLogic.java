@@ -187,4 +187,10 @@ public interface ExternalLogic {
 	 */
 	public void notifyDeletedOption(List<String> userEids, String siteTitle, String pollQuestion);
 	
+	/**
+	 * Is the current user using a mobile browser?
+	 * @return
+	 */
+	public boolean isMobileBrowser();
+	
 }
