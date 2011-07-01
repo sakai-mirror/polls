@@ -195,4 +195,10 @@ public interface ExternalLogic {
 	 */
 	public ToolSession getCurrentToolSession();
 	
+	/**
+	 * Is the current user using a mobile browser?
+	 * @return
+	 */
+	public boolean isMobileBrowser();
+	
 }
