@@ -33,6 +33,8 @@
     </modules>
     
     <properties>
+        <sakai.entitybroker.version>1.3.18</sakai.entitybroker.version>
+        <sakai.ets.version>0.4.6</sakai.ets.version>
         <url.localsite>scp://source.sakaiproject.org/var/www/html/release/polls/${project.version}</url.localsite>
     </properties>
 
@@ -133,7 +135,7 @@
        <dependency>
         	<groupId>org.sakaiproject.emailtemplateservice</groupId>
         	<artifactId>emailtemplateservice-api</artifactId>
-        	<version>0.4.5</version>
+        	<version>${sakai.ets.version}</version>
         	<scope>provided</scope>
         </dependency>
         	
