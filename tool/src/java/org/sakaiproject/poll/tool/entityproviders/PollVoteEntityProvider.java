@@ -30,6 +30,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.entitybroker.EntityReference;
@@ -46,6 +48,7 @@ import org.sakaiproject.entitybroker.entityprovider.capabilities.Redirectable;
 import org.sakaiproject.entitybroker.entityprovider.extension.Formats;
 import org.sakaiproject.entitybroker.entityprovider.search.Restriction;
 import org.sakaiproject.entitybroker.entityprovider.search.Search;
+import org.sakaiproject.entitybroker.exception.EntityException;
 import org.sakaiproject.entitybroker.util.AbstractEntityProvider;
 import org.sakaiproject.event.api.UsageSession;
 import org.sakaiproject.event.api.UsageSessionService;
@@ -100,7 +103,7 @@ public class PollVoteEntityProvider extends AbstractEntityProvider implements Co
     public String createEntity(EntityReference ref, Object entity, Map<String, Object> params) {
         String userId = developerHelperService.getCurrentUserId();
         if (userId == null) {
-            throw new SecurityException("user must be logged in to create new votes");
+            throw new EntityException("User must be logged in to create new votes", ref.getId(), HttpServletResponse.SC_UNAUTHORIZED);
         }
         Vote vote = (Vote) entity;
         
@@ -173,7 +176,7 @@ public class PollVoteEntityProvider extends AbstractEntityProvider implements Co
         String currentUser = developerHelperService.getCurrentUserReference();
         log.debug("current user is: "  + currentUser);
         if (currentUser == null || currentUser.length() == 0) {
-            throw new SecurityException("Anonymous users cannot view specific votes: " + ref);
+            throw new EntityException("Anonymous users cannot view specific votes", ref.getId(), HttpServletResponse.SC_UNAUTHORIZED);
         }
         
         //is this a new object?
@@ -206,7 +209,7 @@ public class PollVoteEntityProvider extends AbstractEntityProvider implements Co
     public List<?> getEntities(EntityReference ref, Search search) {
         String currentUser = developerHelperService.getCurrentUserReference();
         if (currentUser == null) {
-            throw new SecurityException("Anonymous users cannot view votes: " + ref);
+            throw new EntityException("Anonymous users cannot view votes", ref.getId(), HttpServletResponse.SC_UNAUTHORIZED);
         }
      
         
