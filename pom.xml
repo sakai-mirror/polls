@@ -12,7 +12,7 @@
     <groupId>org.sakaiproject.polls</groupId>
     <artifactId>polls</artifactId>
     <packaging>pom</packaging>
-    <version>1.3.15-SNAPSHOT</version>
+    <version>1.3.15</version>
 
     <licenses>
         <license>
@@ -39,9 +39,9 @@
     </properties>
 
     <scm>
-        <connection>scm:svn:https://source.sakaiproject.org/svn/polls/branches/polls-1.3.x</connection>
-        <developerConnection>scm:svn:https://source.sakaiproject.org/svn/polls/branches/polls-1.3.x</developerConnection>
-        <url>https://source.sakaiproject.org/svn/polls/branches/polls-1.3.x</url>
+        <connection>scm:svn:https://source.sakaiproject.org/svn/polls/tags/polls-1.3.15</connection>
+        <developerConnection>scm:svn:https://source.sakaiproject.org/svn/polls/tags/polls-1.3.15</developerConnection>
+        <url>https://source.sakaiproject.org/svn/polls/tags/polls-1.3.15</url>
     </scm>
 
     <distributionManagement>
