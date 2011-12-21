@@ -21,6 +21,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>polls-api</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.sakaiproject.kernel</groupId>
