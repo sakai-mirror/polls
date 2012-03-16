@@ -38,14 +38,6 @@
         <url>https://source.sakaiproject.org/svn/polls/branches/polls-1.5.x</url>
     </scm>
 
-    <distributionManagement>
-        <site>
-            <id>sakai-site</id>
-            <name>Sakai release Site</name>
-            <url>scpexe://source.sakaiproject.org/var/www/html/release/polls/${project.version}</url>
-        </site>
-    </distributionManagement>
-    
     <dependencyManagement>
         <dependencies>
             <dependency>
