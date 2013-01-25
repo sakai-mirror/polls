@@ -82,7 +82,7 @@ public class ExternalLogicImpl implements ExternalLogic {
 	 private static final String
 	 	/* Email template constants */
 	 	EMAIL_TEMPLATE_NOTIFY_DELETED_OPTION = "polls.notifyDeletedOption",
-	 	FILE_NOTIFY_DELETED_OPTION_TEMPLATE = "notifyDeletedOption.xml",
+	 	FILE_NOTIFY_DELETED_OPTION_TEMPLATE = "org/sakaiproject/poll/templates/notifyDeletedOption.xml",
 	 	
 	 	/* Other constants */
 	 	USER_ADMIN_ID = "admin",
@@ -226,16 +226,10 @@ public class ExternalLogicImpl implements ExternalLogic {
     public void init() {
     	log.info("init()");
     	
-    	try {
-    		//Load the "notify deleted option" template
-			loadMailTemplate(EMAIL_TEMPLATE_NOTIFY_DELETED_OPTION, FILE_NOTIFY_DELETED_OPTION_TEMPLATE);
-		} catch (ParserConfigurationException e) {
-			throw new RuntimeException("Could not load an XML parser.", e);
-		} catch (IOException e) {
-			throw new RuntimeException("Could not read from XML template.");
-		} catch (InvalidEmailTemplateException e) {
-			throw new RuntimeException("Could not parse email template: "+e.getKey()+" from "+e.getFileName(), e);
-		}
+    	//TODO this should be set by injection
+    	List<String> templates = new ArrayList<String>();
+    	templates.add(FILE_NOTIFY_DELETED_OPTION_TEMPLATE);
+    	emailTemplateService.processEmailTemplates(templates);
     }
     
     public List<String> getSitesForUser(String userId, String permission) {
@@ -484,148 +478,8 @@ public class ExternalLogicImpl implements ExternalLogic {
 		}
 	}
 	
-	/**
-	 * Load the mail template described by the XML in file 'fileName' into the emailTemplateService,
-	 * identified by 'key'
-	 * 
-	 * @param key
-	 * 	The key that identifies the template
-	 * @param fileName
-	 * 	The filename that holds the template information
-	 * @throws ParserConfigurationException
-	 * @throws IOException
-	 * @throws InvalidEmailTemplateException
-	 * 	Thrown if the email template is not a valid format.
-	 */
-	private void loadMailTemplate(String key, String fileName) throws ParserConfigurationException,
-			IOException, InvalidEmailTemplateException {
-		Session session = null;
-		try {
-			session = sessionManager.getCurrentSession();
-			session.setUserId(USER_ADMIN_ID);
-			session.setUserEid(USER_ADMIN_EID);
-			
-			try {
-				NodeList templates = getEmailTemplates(FILE_NOTIFY_DELETED_OPTION_TEMPLATE);
-				int n = templates.getLength();
-				for (int i = 0; i < n; i++) {
-					xmlToTemplate((Element)templates.item(i), key);
-				}
-			} catch (SAXException e) {
-				throw new InvalidEmailTemplateException(key, fileName, e);
-			} catch (InvalidEmailTemplateException e) {
-				//'e' doesn't have all the information to throw here.
-				throw new InvalidEmailTemplateException(key, fileName);
-			}
-		} finally {
-			if (session != null) {
-				session.setUserId(null);
-				session.setUserEid(null);
-			}
-		}
-	}
 	
-	/**
-	 * Given the XML template node, load it into the Email Template Service as a template
-	 * identified by 'key'
-	 * 
-	 * @param xmlTemplate
-	 * 	The valid XML template to load
-	 * @param key
-	 * 	The key that should identify the template
-	 */
-	private void xmlToTemplate(Element xmlTemplate, String key) {
-		String
-			subject = getTagValue(xmlTemplate, "subject", ""),
-			body = getTagValue(xmlTemplate, "message", ""),
-			locale = getTagValue(xmlTemplate, "locale", ""),
-			versionString = getTagValue(xmlTemplate, "version", "");
-	
-		
-		if (!emailTemplateService.templateExists(key, new Locale(locale)))
-		{
-			EmailTemplate template = new EmailTemplate();
-			template.setSubject(subject);
-			template.setMessage(body);
-			template.setLocale(locale);
-			template.setKey(key);
-			template.setVersion(Integer.valueOf(1));
-			template.setOwner(USER_ADMIN_ID);
-			template.setLastModified(new Date());
-			this.emailTemplateService.saveTemplate(template);
-			log.debug("Added email template: '"+key+"'");
-		}
-		else
-		{
-			EmailTemplate existingTemplate = this.emailTemplateService.getEmailTemplate(key, new Locale(locale));
-			String oVersionString = existingTemplate.getVersion() != null ? existingTemplate.getVersion().toString():null;
-			if ((oVersionString == null && versionString != null) || (oVersionString != null && versionString != null && !oVersionString.equals(versionString)))
-			{
-				Integer version = (versionString != null && !versionString.equals("")) ? Integer.valueOf(versionString) : Integer.valueOf(0);
-				existingTemplate.setSubject(subject);
-				existingTemplate.setMessage(body);
-				existingTemplate.setLocale(locale);
-				existingTemplate.setKey(key);
-				existingTemplate.setVersion(version);
-				existingTemplate.setOwner(USER_ADMIN_ID);
-				existingTemplate.setLastModified(new Date());
-				this.emailTemplateService.updateTemplate(existingTemplate);
-				log.debug("Updated email template: '"+key+"' to version "+version);
-			}
-		}
-			
-	}
 
-	/**
-	 * Load a list of all the XML DOM elements that represent 'emailTemplate's.
-	 * 
-	 * @param file
-	 * 	The file to parse
-	 * @return
-	 * 	A list of nodes (NodeList) that represent all the email templates within the file
-	 * @throws SAXException
-	 * @throws IOException
-	 * @throws ParserConfigurationException
-	 * @throws InvalidEmailTemplateException
-	 * 	Thrown if the XML template is not a valid email template definition
-	 * 
-	 * TODO: Validate the XML email templates against a DTD to validate correctness
-	 */
-	private NodeList getEmailTemplates(String file) throws SAXException, IOException,
-			ParserConfigurationException, InvalidEmailTemplateException {
-		InputStream in = getClass().getClassLoader().getResourceAsStream(file);
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document doc = db.parse(in);
-		
-		Element emailTemplates = doc.getDocumentElement();
-		if ("emailTemplates".equals(emailTemplates.getNodeName())) {
-			return emailTemplates.getElementsByTagName("emailTemplate");
-		} else {
-			throw new InvalidEmailTemplateException(null, file);
-		}
-	}
-	
-	/**
-	 * Convenience method to get the value of a particular tag within an XML element.
-	 * @param e
-	 * @param tagName
-	 * @return
-	 */
-	private String getTagValue(Element e, String tagName, String failover) {
-		String value = failover;
-		NodeList l = e.getElementsByTagName(tagName);
-		if (l != null && l.getLength() > 0) {
-			Element tag = (Element) l.item(0);
-			if (tag != null) {
-				Node n = tag.getFirstChild();
-				if (n != null) {
-					value = n.getNodeValue();
-				}		
-			}
-		}
-		return value;
-	}
 
 	public ToolSession getCurrentToolSession() {
 		return sessionManager.getCurrentToolSession();
