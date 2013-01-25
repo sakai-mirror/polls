@@ -500,12 +500,12 @@ public class ExternalLogicImpl implements ExternalLogic {
 	public List<String> getPermissionKeys() {
 		
 		String[] perms = new String[]{
-				"poll.vote",
-			    "poll.add",
-			    "poll.deleteown",
-			    "poll.deleteAny",
-			    "poll.editAny",
-			    "poll.editOwn",
+				PollListManager.PERMISSION_VOTE,
+			    PollListManager.PERMISSION_ADD,
+			    PollListManager.PERMISSION_EDIT_OWN,
+			    PollListManager.PERMISSION_EDIT_ANY,
+			    PollListManager.PERMISSION_DELETE_OWN,
+			    PollListManager.PERMISSION_DELETE_ANY
 		}; 
 		List<String> ret = Arrays.asList(perms);
 		return ret;
