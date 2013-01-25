@@ -24,6 +24,7 @@ package org.sakaiproject.poll.logic.impl;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -494,4 +495,20 @@ public class ExternalLogicImpl implements ExternalLogic {
 		return false;
 		
 	}
+	
+	
+	public List<String> getPermissionKeys() {
+		
+		String[] perms = new String[]{
+				"poll.vote",
+			    "poll.add",
+			    "poll.deleteown",
+			    "poll.deleteAny",
+			    "poll.editAny",
+			    "poll.editOwn",
+		}; 
+		List<String> ret = Arrays.asList(perms);
+		return ret;
+	}
+	
 }
